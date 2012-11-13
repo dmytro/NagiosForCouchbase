@@ -46,7 +46,6 @@ module Wizcorp
       #
       def get resource=nil
         ur = "#{uri}#{resource || @resource}"
-pp ur
         begin
           @data = JSON.parse Net::HTTP.get URI ur
         rescue => e 
@@ -69,20 +68,24 @@ pp ur
       # Re-define standard method to handle all keys returned with
       # JSON object, so we can refer to the data by key-name
       def method_missing sym, key=nil
+        get if data == { }
+
         sym = sym.to_s
         key = key.to_s
-
-        super unless data.has_key?(sym)
-
-        return data[sym] if key.empty?
-    
-        if data[sym].is_a?(Hash) && data[sym].has_key?(key)
-          return data[sym][key]
-        else
-          return nil
-        end
+        if data.has_key?(sym)
+             
+          return data[sym] if key.empty?
           
+          if data[sym].is_a?(Hash) && data[sym].has_key?(key)
+            return data[sym][key]
+          else
+            return nil
+          end
+        else
+          super sym, key
+        end          
       end
+
       
     end # class Connection
   end # module Couchbase
