@@ -7,7 +7,7 @@ class Array
   
   # Calculate sum of array
   def sum
-    self.inject(0,:+)
+    self.reduce(0,:+)
   end
   
   def avg
