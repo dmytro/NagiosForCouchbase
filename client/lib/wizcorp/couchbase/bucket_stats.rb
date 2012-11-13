@@ -5,7 +5,9 @@ module Wizcorp
     class BucketStats < Connection
 
       # Retrieves stats for single bucket only.
-      def initialize bucket, params={ }
+      def initialize params={ }
+        raise "#{self.class} constructor needs :bucket argument" unless params.has_key? :bucket
+        bucket = params[:bucket]
         super params
         @resource = "#{@connection[:pool]}/buckets/#{bucket}/stats"
       end

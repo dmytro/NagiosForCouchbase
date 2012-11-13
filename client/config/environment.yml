@@ -1,0 +1,18 @@
+---
+
+default: &default
+  :namespace: Wizcorp::Couchbase
+  :class: BucketStats
+  :function: :none # Function can be any Array method, producing single value. See ./lib/array.rb for the implemented ones.
+  :operator: :>
+  :rag: [0,0,0]  # order Red, Amber, Green
+
+
+:ep_tap_replica_queue_backfillremaining:
+  <<: *default
+  :function: :sum
+  :rag:  [-20, 10, -1]
+
+:ep_tap_total_count:
+  <<: *default
+  :function: :avg
