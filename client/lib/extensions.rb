@@ -7,20 +7,15 @@ class Object
 end
 
 class Array
-    
   # Calculate sum of array
-  def sum
-    self.reduce(0,:+)
-  end
-  
-  def avg
-    self.sum / self.length
-  end
+  def sum; self.reduce(0,:+) end
+
+  # Average reduce function.
+  def avg; self.sum.to_f / self.length end
 
 end
 
 class String
-  
 
   # Small sextension for String class to be able create classes from
   # strings configured in the environment.yml file.

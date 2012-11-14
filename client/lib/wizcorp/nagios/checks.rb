@@ -15,11 +15,11 @@ module Wizcorp
       #
       def initialize key,  hash={ }
         key = key.to_sym
-        @key = CONFIG[key].merge(:name => key)
+        @key = CONFIG[key].merge(:name => key.to_sym)
 
         klass = [@key[:namespace],@key[:class]].join('::').to_class
         @connection = klass.new hash
-        @hostname = @connection[:hostname]
+        @hostname = hash[:hostname]
       end
 
       attr_accessor :connection, :hostname
@@ -48,13 +48,13 @@ module Wizcorp
 
         connection.get # 1
 
-        res = connection.send(@key[:name]).send(@key[:function]) # 2
+        res = connection.send(@key[:name]).send(@key[:function].to_sym) # 2
         
         thresholds = @key[:rag].reverse # 3
 
         thresholds.each_index do |idx| # 4
           val = thresholds[idx]
-          rag = idx if res.send(@key[:operator], val)
+          rag = idx if res.send(@key[:operator].to_sym, val)
         end
 
         { 

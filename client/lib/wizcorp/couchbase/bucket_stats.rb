@@ -7,9 +7,8 @@ module Wizcorp
       # Retrieves stats for single bucket only.
       def initialize params={ }
         raise "#{self.class} constructor needs :bucket argument" unless params.has_key? :bucket
-        bucket = params[:bucket]
         super params
-        @resource = "#{@connection[:pool]}/buckets/#{bucket}/stats"
+        @resource = "#{@connection[:pool]}/buckets/#{params[:bucket]}/stats"
       end
 
       # Custom method_missing method to access structure in
@@ -24,14 +23,14 @@ module Wizcorp
       #         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       #         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
       #         0, 0, 0, 0, 0, 0]
-      def method_missing sym
+      def method_missing sym, *args
         get if data == { }
         sym = sym.to_s
         
         if data['op']['samples'].has_key?(sym)
           return data['op']['samples'][sym]
         else
-          super sym
+          super sym, *args
         end
 
           

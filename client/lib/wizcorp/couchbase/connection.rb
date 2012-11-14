@@ -94,7 +94,7 @@ module Wizcorp
             return nil
           end
         else
-          super sym, key
+          super sym.to_sym, key
         end          
       end
 

@@ -7,7 +7,7 @@ require_relative 'wizcorp/couchbase/bucket_stats'
 require_relative 'wizcorp/nagios/api'
 require_relative 'wizcorp/nagios/checks'
 
-
+# Some core classes extensions - Object, Array, String.
 require_relative 'extensions'
 
 APP = { :lib => File.dirname(__FILE__) }
