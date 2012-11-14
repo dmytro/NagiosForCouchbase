@@ -8,10 +8,16 @@ end
 
 class Array
   # Calculate sum of array
-  def sum; self.reduce(0,:+) end
+  # @return [Numeric]
+  def sum 
+    self.reduce(0,:+) 
+  end
 
   # Average reduce function.
-  def avg; self.sum.to_f / self.length end
+  # @return [Numeric]
+  def avg 
+    self.sum.to_f / self.length 
+  end
 
 end
 
