@@ -8,8 +8,7 @@ require_relative 'wizcorp/nagios/api'
 require_relative 'wizcorp/nagios/checks'
 
 
-require_relative 'string'
-require_relative 'array'
+require_relative 'extensions'
 
 APP = { :lib => File.dirname(__FILE__) }
 APP[:root] = File.dirname APP[:lib] 
