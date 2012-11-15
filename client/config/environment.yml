@@ -3,13 +3,13 @@
   :hostgroup: couchbase
 
   :api:
-    :hostname: localhost
+    :hostname: nagios
     :port: 4567
 
 :buckets:
   cbm1:
     - default
-    - another
+#    - another
   cbm2:
     - default
-    - another
+#    - another

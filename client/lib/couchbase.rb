@@ -10,6 +10,7 @@ require_relative 'wizcorp/couchbase/bucket_stats'
 
 require_relative 'wizcorp/nagios/api'
 require_relative 'wizcorp/nagios/checks'
+require_relative 'wizcorp/nagios/runner'
 
 
 require_relative '../config/environment'

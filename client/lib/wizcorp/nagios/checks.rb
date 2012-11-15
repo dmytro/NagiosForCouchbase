@@ -2,8 +2,16 @@ module Wizcorp
   module Nagios
 
     class Checks
+
+      # Reuse Couchbase API connections
+      @@connections = { }
+
+      def self.connections
+        @@connections
+      end
+
       # Creates an instance of an object. Object's atttibute
-      # @connection is an instance of Wizcorp::Couchbase::* object,
+      # !@connection is an instance of Wizcorp::Couchbase::* object,
       # that connects to Couchbase RESTful API and retrieves status
       # information.
       #
@@ -12,14 +20,32 @@ module Wizcorp
       # 
       # @param [Hash] hash Connection Hash for Couchbase
       #     connection. See {Wizcorp::Couchbase::Connection#new}
+      #     Options below are required, all other Hash attributes
+      #     depend on the actual class constructor.
+      #
+      # @option hash [String] :hostname Couchbase server for service
+      #     checks
+      #
+      # @option hash [Boolean] :reuse_connection Set to +false+ if you
+      #     don't want to reuse connections for this service check. By
+      #     default connections cached, and for several keys, data
+      #     from single HTTP request are reused.
       #
       def initialize key,  hash={ }
         key = key.to_sym
-        @key = CONFIG[key].merge(:name => key.to_sym)
+        @key = CHECKS[key].merge(:name => key.to_sym)
 
         klass = [@key[:namespace],@key[:class]].join('::').to_class
-        @connection = klass.new hash
+
         @hostname = hash[:hostname]
+        
+        if hash[:reuse_connection] == false
+          @connection = klass.new(hash) 
+        else
+          @connection = @@connections[hash] || klass.new(hash) # Reuse connection
+          @@connections[hash] = @connection
+        end
+
       end
 
       attr_accessor :connection, :hostname

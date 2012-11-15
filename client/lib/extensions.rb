@@ -9,21 +9,21 @@ end
 class Array
   # Calculate sum of array
   # @return [Numeric]
-  def sum 
-    self.reduce(0,:+) 
+  def sum digits=1
+    self.reduce(0,:+).round(digits)
   end
 
   # Average reduce function.
   # @return [Numeric]
-  def avg 
-    self.sum.to_f / self.length 
+  def avg  digits=1
+    (self.sum.to_f / self.length).round(digits)
   end
 
 end
 
 class String
 
-  # Small sextension for String class to be able create classes from
+  # Small extension for String class to be able create classes from
   # strings configured in the environment.yml file.
   #
   # Take '::' separated string and make class of it.

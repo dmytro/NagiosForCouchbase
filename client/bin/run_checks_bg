@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/couchbase'
+
+loop do 
+  Wizcorp::Nagios::Runner.run_all
+  sleep 5
+end
+
+

@@ -33,9 +33,6 @@ module Wizcorp
       # checks for single host. If data is Array, then all the checks
       # are submitted with one HTTP request.
       #
-      # @param [Hash] data Nagios formatted data, acceptable by
-      #     {Nagira#put_status_host_name_services} method
-      #
       # @see Nagira#put_status_host_name_services
       #
       # @param [String] host Hostname of the server check is executed against (not API Nagira host).
@@ -45,7 +42,8 @@ module Wizcorp
       # @param [Hash, Array] data Input data for the status check
       #     submission. Should contain attributes: service_description
       #     :return_code, :plugin_output. Note, attribute host_name is
-      #     overriden by host parameter. 
+      #     overriden by host parameter. Data acceptable by
+      #     +Nagira#put_status_host_name_services+ method
       #
       # 
       #

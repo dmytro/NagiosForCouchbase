@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/couchbase'
+
+ Wizcorp::Nagios::Runner.run_all
