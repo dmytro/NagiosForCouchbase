@@ -1,0 +1,4 @@
+lib/**/*.rb
+config/*.rb
+-m markdown
+--asset images:images
