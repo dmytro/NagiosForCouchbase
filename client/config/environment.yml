@@ -7,9 +7,21 @@
     :port: 4567
 
 :buckets:
+#   :buckets:
+#     - defauls
+#   :hostgroups:
+#     - membase_slaves
+#     - membase_masters
+#   :except:
+#     - dummy.moria.local
+#   :hosts:
+
+#
+# This is version beta config. Will be changed later.
+#
   cbm1:
     - default
-#    - another
+    #    - another
   cbm2:
     - default
-#    - another
+    #    - another

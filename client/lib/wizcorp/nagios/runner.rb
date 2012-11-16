@@ -11,6 +11,18 @@ module Wizcorp
         end
       end
 
+
+      # Build list of hosts/bucket pairs to run checks. All other
+      # procedures should not access configuration directly, but rely
+      # on the output provided by this method. When configuration
+      # changes only ned to change this method.
+#       def self.buckets
+#         if APP.has_key? :hosts
+#           APP[:buckets][:hosts]
+#         else
+#         end
+#       end
+
       # @param [String] hostname Couchbase server hostname.
       #
       # Initialize all checks array for single Couchbase server,
@@ -38,7 +50,7 @@ module Wizcorp
           end
         end
         
-        @api = API.new APP[:nagios][:api].merge(params)
+        @api = Services.new APP[:nagios][:api].merge(params)
       end
 
       attr_accessor :hostname, :checks, :api, :status

@@ -6,27 +6,20 @@ module Wizcorp
       require 'rest-client'
 
       def initialize params={ }
-        # Defaults
+
         @connection = { 
           :hostname => 'localhost',
           :port     => 4567,
-          :basepath => ''
+          :base => ''
         }.merge(params)
         c = @connection
-        @base = "http://#{c[:hostname]}:#{c[:port]}#{c[:basepath]}/_status"
+        @baseuri = "http://#{c[:hostname]}:#{c[:port]}/#{c[:base]}"
         @response = { }
 
       end
 
       attr_accessor :response
 
-      # Build API endpoint URL using @base variable and host, service
-      # pair.
-      def endpoint  host, service=nil
-        path = [@base, host, "_services"] 
-        path << service if service
-        URI.escape(path.join "/")
-      end
 
       # Submit data to Nagira API. Sets @response variable to
       # [RestClient.response]. can submit single check or multiple
@@ -58,6 +51,7 @@ module Wizcorp
       end
 
       alias :submit :put
+
 
     end
   end
