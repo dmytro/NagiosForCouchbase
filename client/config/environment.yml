@@ -1,4 +1,8 @@
 
+:run_as: nagios
+:rvm: ruby-1.9.3-p327
+:log: /var/log/nagios3/nagira.log
+
 :nagios:
   :hostgroup: couchbase
 
