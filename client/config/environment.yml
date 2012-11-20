@@ -4,7 +4,8 @@
 :log: /var/log/nagios3/nagira.log
 
 :nagios:
-  :hostgroup: couchbase
+  :hostgroups: [membase_masters, membase_slaves]
+  :erb: erb/couchbase.cfg.erb
 
   :api:
     :hostname: nagios
@@ -23,9 +24,23 @@
 #
 # This is version beta config. Will be changed later.
 #
-  cbm1:
+  membase1.moria.local:
     - default
-    #    - another
-  cbm2:
+  slave1.membase1.moria.local:
     - default
-    #    - another
+  slave2.membase1.moria.local:
+    - default
+  slave3.membase1.moria.local:
+    - default
+  slave4.membase1.moria.local:
+    - default
+  slave5.membase1.moria.local:
+    - default
+  slave6.membase1.moria.local:
+    - default
+  slave7.membase1.moria.local:
+    - default
+  slave8.membase1.moria.local:
+    - default
+  slave9.membase1.moria.local:
+    - default

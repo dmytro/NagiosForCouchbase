@@ -5,6 +5,9 @@ define service{
   active_checks_enabled           0       ; Active service checks are disabled
   passive_checks_enabled          1       ; Passive service checks are enabled/accepted
   check_freshness                 1       ; Check service 'freshness'
+  contact_groups                  contact_warnings, contact_criticals, pagerduty_group
+  notification_period             never
+  notification_interval           30
   register                        0       ; DONT REGISTER THIS DEFINITION - ITS NOT A REAL SERVICE, JUST A TEMPLATE!
 }
 
@@ -19,37 +22,11 @@ define service{
   check_command check_false
 }
 
-
+<% @checks.each do |check| %>
 define service{
   use                 couchbase-check
-  name                ep_tap_replica_queue_backfillremaining
-  service_description ep_tap_replica_queue_backfillremaining
-  hostgroup_name      couchbase
+  name                <%= check %>
+  service_description <%= check %>
+  hostgroup_name      <%= @hostgroups.join(", ") %>
 }
-define service{
-  use                 couchbase-check
-  name                ep_tap_total_count
-  service_description ep_tap_total_count
-  hostgroup_name      couchbase
-}
-
-define host{
-  use                     generic-host            ; Name of host template to use
-  host_name               cbm1
-  alias                   cbm1
-  address                 cbm1
-}
-
-define host{
-  use                     generic-host            ; Name of host template to use
-  host_name               cbm2
-  alias                   cbm2
-  address                 cbm2
-}
-
-
-define hostgroup {
-  hostgroup_name  couchbase
-  alias           couchbase
-  members         cbm.*
-}
+<% end %>
