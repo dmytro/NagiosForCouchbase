@@ -6,10 +6,13 @@
 default: &default
   :namespace: Wizcorp::Couchbase
   :class: BucketStats
-  :function: :none 
+  :function: :avg 
   :operator: :>
   :rag: [0,0,0]  # order Red, Amber, Green
 
+# TODO #near_zero: &near_zero
+# TODO #  :function: :avg
+# TODO #  :rag:  [20, 10, -1]
 
 # ======================
 # END of defaults
@@ -17,16 +20,36 @@ default: &default
 
 :ep_tap_replica_queue_backfillremaining:
   <<: *default
-  :function: :sum
-  :rag:  [20, 10, -1]
+  :rag: [20,10,-1]
 
-:ep_tap_total_count:
+:ep_tap_total_qlen:
   <<: *default
-  :rag: [5,1,0]
-  :function: :avg
+  :rag: [20,10,-1]
 
-
+:vb_active_queue_size:
+  <<: *default
+  :rag: [100,80,-1]
+    
+:vb_replica_queue_size:
+  <<: *default
+  :rag: [100,80,-1]
+    
 :avg_disk_commit_time:
   <<: *default
-  :rag: [0,0,-1]
-  :function: :sum
+  :rag: [50,40,0]
+
+:ep_tap_total_queue_drain:
+  <<: *default
+  :rag: [100,80,-1]
+
+:ep_tap_total_queue_backoff:
+  <<: *default
+  :rag: [50,10,-1]
+
+:ep_tap_total_queue_itemondisk:
+  <<: *default
+  :rag: [50,10,-1]
+
+:ep_tap_replica_queue_itemondisk:
+  <<: *default
+  :rag: [50,10,-1]

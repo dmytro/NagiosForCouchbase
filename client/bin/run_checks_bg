@@ -4,7 +4,7 @@ require_relative '../lib/couchbase'
 
 loop do 
   Wizcorp::Nagios::Runner.run_all
-  sleep 15
+  sleep 60
 end
 
 
