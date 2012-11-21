@@ -3,25 +3,15 @@ module Wizcorp
     class Runner
 
       # Run all checks for all configured hosts with single command.
+      # List of hosts is coming from Nagira API using Hostgroup class.
       def self.run_all params={ }
-        hosts = APP[:buckets].keys
+        @hosts   = Hostgroup.new(params).hosts(::APP[:nagios][:hostgroups])
         
         hosts.each do |host|
           self.new(host, params).submit
         end
       end
 
-
-      # Build list of hosts/bucket pairs to run checks. All other
-      # procedures should not access configuration directly, but rely
-      # on the output provided by this method. When configuration
-      # changes only ned to change this method.
-#       def self.buckets
-#         if APP.has_key? :hosts
-#           APP[:buckets][:hosts]
-#         else
-#         end
-#       end
 
       # @param [String] hostname Couchbase server hostname.
       #
@@ -40,7 +30,8 @@ module Wizcorp
         checks = CHECKS.keys.reject { |x| x == 'default'}
 
         @hostname = hostname
-        @buckets = APP[:buckets][hostname]
+        @buckets = APP[:buckets]
+        
         
         @checks, @status = [], []
         

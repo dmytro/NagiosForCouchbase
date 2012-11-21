@@ -1,8 +1,18 @@
 
+# UNIX is to run application with
 :run_as: nagios
+
+# RVM version
 :rvm: ruby-1.9.3-p327
+
+# This log file should be accessible with ID above
 :log: /var/log/nagios3/nagira.log
 
+
+#
+# Hosts configuration for the application.
+# Hosts list will be rerived from Nagira API on start
+#
 :nagios:
   :hostgroups: [membase_masters, membase_slaves]
   :erb: erb/couchbase.cfg.erb
@@ -12,35 +22,4 @@
     :port: 4567
 
 :buckets:
-#   :buckets:
-#     - defauls
-#   :hostgroups:
-#     - membase_slaves
-#     - membase_masters
-#   :except:
-#     - dummy.moria.local
-#   :hosts:
-
-#
-# This is version beta config. Will be changed later.
-#
-  membase1.moria.local:
-    - default
-  slave1.membase1.moria.local:
-    - default
-  slave2.membase1.moria.local:
-    - default
-  slave3.membase1.moria.local:
-    - default
-  slave4.membase1.moria.local:
-    - default
-  slave5.membase1.moria.local:
-    - default
-  slave6.membase1.moria.local:
-    - default
-  slave7.membase1.moria.local:
-    - default
-  slave8.membase1.moria.local:
-    - default
-  slave9.membase1.moria.local:
-    - default
+  - default

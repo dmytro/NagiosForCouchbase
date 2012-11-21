@@ -6,7 +6,7 @@ require 'erb'
 namespace :client do 
   namespace :config do 
     
-    desc "Create config"
+    desc "Create config for Nagios"
     task :generate do
       @hosts = APP[:buckets].keys
       (@checks = CHECKS.keys).delete('default')

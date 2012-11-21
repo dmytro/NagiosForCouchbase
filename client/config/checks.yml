@@ -10,21 +10,22 @@ default: &default
   :operator: :>
   :rag: [0,0,0]  # order Red, Amber, Green
 
-# TODO #near_zero: &near_zero
-# TODO #  :function: :avg
-# TODO #  :rag:  [20, 10, -1]
+# Chechs for values that should be close to or 0 most of the times.
+zero_10: &zero_10
+  <<: *default
+  :rag:  [20, 10, -1]
+
+
 
 # ======================
 # END of defaults
 # ======================
 
 :ep_tap_replica_queue_backfillremaining:
-  <<: *default
-  :rag: [20,10,-1]
+  <<: *zero_10
 
 :ep_tap_total_qlen:
-  <<: *default
-  :rag: [20,10,-1]
+  <<: *zero_10
 
 :vb_active_queue_size:
   <<: *default

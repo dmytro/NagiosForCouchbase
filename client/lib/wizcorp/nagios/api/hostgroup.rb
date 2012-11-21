@@ -13,8 +13,8 @@ module Wizcorp
       def initialize params={ }
         super params.merge :base => '_objects/hostgroup'
 
-        @hostgroups = params[:hostgroups] || []
-        @hostgroup  = params[:hostgroup]  || nil
+        @hostgroups = ((params[:hostgroups] || []) << params[:hostgroup]).uniq.compact
+        
         @hosts = []
       end
 
@@ -34,9 +34,14 @@ module Wizcorp
       #
       # @return [Array] List of hosts
       #
-      def get *groups
+      def hosts groups=nil
+        
+        groups = case groups
+                 when Array     then groups
+                 when String    then Array[groups]
+                 when NilClass  then @hostgroups
+                 end
 
-        groups ||= @hostgroups + [@hostgroup]
         @hosts = []
 
         groups.each do |gr|
