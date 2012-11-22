@@ -6,11 +6,11 @@
 default: &default
   :namespace: Wizcorp::Couchbase
   :class: BucketStats
-  :function: :avg 
-  :operator: :>
-  :rag: [0,0,0]  # order Red, Amber, Green
+  :function: :avg               # :avg, :sum, :none
+  :operator: :>                 # Can be :>, :< ,:==, :!=
+  :rag: [0,0,0]                 # order Red, Amber, Green
 
-# Chechs for values that should be close to or 0 most of the times.
+# Checks for values that should be close to or 0 most of the times.
 zero_10: &zero_10
   <<: *default
   :rag:  [20, 10, -1]
