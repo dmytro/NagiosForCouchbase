@@ -15,8 +15,8 @@ module Wizcorp
       # that connects to Couchbase RESTful API and retrieves status
       # information.
       #
-      # @param [String, Symbol] key Configuration parameter from
-      # CONFIG constant. See config/environment.yml file for details.
+      # @param [String, Symbol] key Couchbase variable. See
+      #     config/checks.yml file for details.
       # 
       # @param [Hash] hash Connection Hash for Couchbase
       #     connection. See {Wizcorp::Couchbase::Connection#new}
@@ -32,7 +32,6 @@ module Wizcorp
       #     from single HTTP request are reused.
       #
       def initialize key,  hash={ }
-        key = key.to_sym
         @key = CHECKS[key].merge(:name => key.to_sym)
 
         klass = [@key[:namespace],@key[:class]].join('::').to_class

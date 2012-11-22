@@ -21,36 +21,40 @@ zero_10: &zero_10
 # END of defaults
 # ======================
 
-:ep_tap_replica_queue_backfillremaining:
-  <<: *zero_10
+#
+# Actual checks are grouped under [checks] subtree. 
+#
+checks:
+  :ep_tap_replica_queue_backfillremaining:
+    <<: *zero_10
 
-:ep_tap_total_qlen:
-  <<: *zero_10
+  :ep_tap_total_qlen:
+    <<: *zero_10
 
-:vb_active_queue_size:
-  <<: *default
-  :rag: [100,80,-1]
+  :vb_active_queue_size:
+    <<: *default
+    :rag: [100,80,-1]
     
-:vb_replica_queue_size:
-  <<: *default
-  :rag: [100,80,-1]
+  :vb_replica_queue_size:
+    <<: *default
+    :rag: [100,80,-1]
     
-:avg_disk_commit_time:
-  <<: *default
-  :rag: [50,40,0]
+  :avg_disk_commit_time:
+    <<: *default
+    :rag: [50,40,0]
 
-:ep_tap_total_queue_drain:
-  <<: *default
-  :rag: [100,80,-1]
+  :ep_tap_total_queue_drain:
+    <<: *default
+    :rag: [100,80,-1]
 
-:ep_tap_total_queue_backoff:
-  <<: *default
-  :rag: [50,10,-1]
+  :ep_tap_total_queue_backoff:
+    <<: *default
+    :rag: [50,10,-1]
 
-:ep_tap_total_queue_itemondisk:
-  <<: *default
-  :rag: [50,10,-1]
+  :ep_tap_total_queue_itemondisk:
+    <<: *default
+    :rag: [50,10,-1]
 
-:ep_tap_replica_queue_itemondisk:
-  <<: *default
-  :rag: [50,10,-1]
+  :ep_tap_replica_queue_itemondisk:
+    <<: *default
+    :rag: [50,10,-1]

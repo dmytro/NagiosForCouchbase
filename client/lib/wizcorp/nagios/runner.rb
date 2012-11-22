@@ -5,7 +5,12 @@ module Wizcorp
       # Run all checks for all configured hosts with single command.
       # List of hosts is coming from Nagira API using Hostgroup class.
       def self.run_all params={ }
-        @hosts   = Hostgroup.new(params).hosts(::APP[:nagios][:hostgroups])
+        hosts   = Hostgroup.new(params).hosts(::APP[:nagios][:hostgroups])
+        # See commment in environment.yml file for the same name
+        # attribute.
+        ignore_hosts = APP[:nagios][:ignore_hosts]
+
+        hosts = hosts - ignore_hosts
         
         hosts.each do |host|
           self.new(host, params).submit
@@ -27,7 +32,7 @@ module Wizcorp
       # servers (query 'Membase' hostgroup).
 
       def initialize hostname, params={ }
-        checks = CHECKS.keys.reject { |x| x == 'default'}
+        checks = CHECKS.keys
 
         @hostname = hostname
         @buckets = APP[:buckets]
