@@ -22,11 +22,17 @@ define service{
   check_command check_false
 }
 
+define servicegroup {
+  servicegroup_name       check_couchbase
+  alias                   Check Couchbase services
+}
+
 <% @checks.each do |check| %>
 define service{
   use                 couchbase-check
   name                <%= check %>
   service_description <%= check %>
   hostgroup_name      <%= @hostgroups.join(", ") %>
+  servicegroups       check_couchbase
 }
 <% end %>
