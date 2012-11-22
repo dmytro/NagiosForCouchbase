@@ -1,4 +1,5 @@
 require 'pp'
+require 'yaml'
 
 # Some core classes extensions - Object, Array, String.
 require_relative 'extensions'
