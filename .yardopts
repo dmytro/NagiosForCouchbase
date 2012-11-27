@@ -4,3 +4,4 @@ config/*.rb
 --asset documentation/images:images
 -
 LICENSE.md
+documentation/CONFIGURATION.md
