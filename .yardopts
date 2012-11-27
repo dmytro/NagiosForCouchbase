@@ -1,0 +1,6 @@
+lib/**/*.rb
+config/*.rb
+-m markdown
+--asset documentation/images:images
+-
+LICENSE.md

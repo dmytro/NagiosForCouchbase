@@ -1,0 +1,3 @@
+[submodule "lib/nagira"]
+	path = lib/nagira
+	url = https://github.com/dmytro/nagira.git
