@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Nagiosforcouchbase by dmytro</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Nagiosforcouchbase</h1>
+        <p></p>
+
+        <p class="view"><a href="https://github.com/dmytro/NagiosForCouchbase">View the Project on GitHub <small>dmytro/NagiosForCouchbase</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/dmytro/NagiosForCouchbase/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/dmytro/NagiosForCouchbase/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/dmytro/NagiosForCouchbase">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Couchbase Nagios Monitoring</h1>
+
+<h1>Workflow diagram</h1>
+
+<p><img src="images/workflow.png" alt="Monitoring Work Flow"></p>
+
+<h1>Directory layout</h1>
+
+<pre><code>├── config
+│   ├── checks.yml
+│   ├── environment.rb
+│   └── environment.yml
+└── lib
+    ├── couchbase.rb
+    ├── extensions.rb
+    └── wizcorp
+        ├── couchbase
+        │   ├── bucket_stats.rb
+        │   ├── buckets.rb
+        │   ├── connection.rb
+        │   └── counters.rb
+        └── nagios
+            ├── api.rb
+            ├── checks.rb
+            └── runner.rb
+</code></pre>
+
+<h1>Configuration files</h1>
+
+<p>All configuration files are in <code>./config</code> directory.</p>
+
+<ul>
+<li>
+<code>environment.rb</code> - Ruby code for loading necessary configurations</li>
+<li>
+<code>environment.yml</code> - YAML configuration for Application environment: paths', hostnames, ports, etc.</li>
+<li>
+<code>checks.yml</code> - Nagios service checks configuration.</li>
+</ul><h2>Nagios checks configuration</h2>
+
+<h3>Description of the format</h3>
+
+<p>For clarification regarding format of the attributes, refer to defaults section. All configuration should adhere to the same syntax.</p>
+
+<h4>Colons (:)</h4>
+
+<p>Attributes should have colons at both ends(i.e. <code>:namespace:</code>, <code>:class:</code>) Trailing colon is left/right side separator in YAML syntax. Leading colon specifies that this is a Symbol in Ruby terms.</p>
+
+<p>Values for attributes <code>:function</code>, <code>:operator</code> also must have leading colons. These are Ruby method names, i.e. symbols.</p>
+
+<h4>Override</h4>
+
+<p>Import defaults by including <code>'&lt;&lt;: *default'</code>, see Example below.</p>
+
+<p>Any default attribute can be overriden. </p>
+
+<h4>Attributes</h4>
+
+<ul>
+<li><p>key (for example <code>:ep_tap_replica_queue_backfillremaining:</code>) is a Ruby method name. In a class defined by <code>:namespace:</code>, <code>:class:</code> pair, must exist or should be provided by <code>method_missing</code> method.</p></li>
+<li><p><code>:namespace:</code> and <code>:class:</code> - Ruby module hierarchy, together with class define Ruby class that reads Couchbase data from REST.</p></li>
+<li><p><code>:function:</code> - name of reduce type function (Array class method) for array pre-processing (for example, :sum or :avg) Function can be any Array method, producing single value. See ./lib/array.rb for the implemented ones.</p></li>
+<li><p><code>:operator:</code> - comparison operator for eavluating RAG checks (for example <code>ep_tap_replica_queue_backfillremaining &gt; 20</code>). Operator is Numeric method name, syntax is: <code>':&gt;'</code>, <code>':=='</code>, <code>':!='</code>, etc. This can be any operator or method returning boolean.</p></li>
+<li><p><code>:rag:</code> - three element array of values to compare to [Red, Amber,
+Green], order is important.</p></li>
+</ul><h3>Example</h3>
+
+<div class="highlight"><pre>
+<span class="l-Scalar-Plain">default</span><span class="p-Indicator">:</span> <span class="nl">&amp;default</span>
+  <span class="l-Scalar-Plain">:namespace</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Wizcorp::Couchbase</span>
+  <span class="l-Scalar-Plain">:class</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">BucketStats</span>
+  <span class="l-Scalar-Plain">:function</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">:none</span> 
+  <span class="l-Scalar-Plain">:operator</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">:&gt;</span>
+  <span class="l-Scalar-Plain">:rag</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">0</span><span class="p-Indicator">,</span><span class="nv">0</span><span class="p-Indicator">,</span><span class="nv">0</span><span class="p-Indicator">]</span>  <span class="c1"># order Red, Amber, Green</span>
+
+<span class="l-Scalar-Plain">:ep_tap_replica_queue_backfillremaining</span><span class="p-Indicator">:</span>
+   <span class="l-Scalar-Plain">&lt;&lt;</span><span class="p-Indicator">:</span> <span class="nv">*default</span>
+   <span class="l-Scalar-Plain">:function</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">:sum</span>
+   <span class="l-Scalar-Plain">:rag</span><span class="p-Indicator">:</span>  <span class="p-Indicator">[</span><span class="nv">-20</span><span class="p-Indicator">,</span> <span class="nv">10</span><span class="p-Indicator">,</span> <span class="nv">-1</span><span class="p-Indicator">]</span>
+
+</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/dmytro">dmytro</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
