@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+<title>
+  File: CONFIGURATION
+  
+    &mdash; Documentation by YARD 0.8.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: CONFIGURATION</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h1>Configuration files</h1>
+
+<p>All configuration files are in <code>./config</code> directory.</p>
+
+<ul>
+<li><code>environment.rb</code> - Ruby code for loading necessary configurations</li>
+<li><code>environment.yml</code> - YAML configuration for Application environment: paths&#39;, hostnames, ports, etc.</li>
+<li><code>checks.yml</code> - Nagios service checks configuration.</li>
+</ul>
+
+<h2>Nagios checks configuration</h2>
+
+<h3>Description of the format</h3>
+
+<p>For clarification regarding format of the attributes, refer to defaults section. All configuration should adhere to the same syntax.</p>
+
+<h4>Colons (:)</h4>
+
+<p>Attributes should have colons at both ends(i.e. <code>:namespace:</code>, <code>:class:</code>) Trailing colon is left/right side separator in YAML syntax. Leading colon specifies that this is a Symbol in Ruby terms.</p>
+
+<p>Values for attributes <code>:function</code>, <code>:operator</code> also must have leading colons. These are Ruby method names, i.e. symbols.</p>
+
+<h4>Override</h4>
+
+<p>Import defaults by including <code>&#39;&lt;&lt;: *default&#39;</code>, see Example below.</p>
+
+<p>Any default attribute can be overwritten. </p>
+
+<h4>Attributes</h4>
+
+<ul>
+<li><p>key (for example <code>:ep_tap_replica_queue_backfillremaining:</code>) is a Ruby method name. In a class defined by <code>:namespace:</code>, <code>:class:</code> pair, must exist or should be provided by <code>method_missing</code> method.</p></li>
+<li><p><code>:namespace:</code> and <code>:class:</code> - Ruby module hierarchy, together with class define Ruby class that reads Couchbase data from REST.</p></li>
+<li><p><code>:function:</code> - name of reduce type function (Array class method) for array pre-processing (for example, :sum or :avg) Function can be any Array method, producing single value. See ./lib/array.rb for the implemented ones.</p></li>
+<li><p><code>:operator:</code> - comparison operator for evaluating RAG checks (for example <code>ep_tap_replica_queue_backfillremaining &gt; 20</code>). Operator is Numeric method name, syntax is: <code>&#39;:&gt;&#39;</code>, <code>&#39;:==&#39;</code>, <code>&#39;:!=&#39;</code>, etc. This can be any operator or method returning Boolean.</p></li>
+<li><p><code>:rag:</code> - three element array of values to compare to [Red, Amber,
+Green], order is important.</p></li>
+</ul>
+
+<h3>Example</h3>
+
+<pre class="code yaml"><code>
+default: &amp;default
+  :namespace: Wizcorp::Couchbase
+  :class: BucketStats
+  :function: :none 
+  :operator: :&gt;
+  :rag: [0,0,0]  # order Red, Amber, Green
+
+:ep_tap_replica_queue_backfillremaining:
+   &lt;&lt;: *default
+   :function: :sum
+   :rag:  [-20, 10, -1]
+
+</code></pre>
+</div></div>
+
+    <div id="footer">
+  Generated on Tue Nov 27 18:26:32 2012 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.3 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
