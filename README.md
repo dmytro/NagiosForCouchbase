@@ -2,7 +2,9 @@
 Couchbase Nagios Monitoring
 ===========================
 
-Workflow diagram
+Note for the documentation: These documents are more readable in parsed YARD form (links and images are included and working).
+
+Work-flow diagram
 ======================
 
 ![Monitoring Work Flow](images/workflow.png)
@@ -60,7 +62,7 @@ Values for attributes `:function`, `:operator` also must have leading colons. Th
 
 Import defaults by including `'<<: *default'`, see Example below.
 
-Any default attribute can be overriden. 
+Any default attribute can be overwritten. 
 
 #### Attributes
 
@@ -70,7 +72,7 @@ Any default attribute can be overriden.
 
 * `:function:` - name of reduce type function (Array class method) for array pre-processing (for example, :sum or :avg) Function can be any Array method, producing single value. See ./lib/array.rb for the implemented ones.
 
-* `:operator:` - comparison operator for eavluating RAG checks (for example `ep_tap_replica_queue_backfillremaining > 20`). Operator is Numeric method name, syntax is: `':>'`, `':=='`, `':!='`, etc. This can be any operator or method returning boolean.
+* `:operator:` - comparison operator for evaluating RAG checks (for example `ep_tap_replica_queue_backfillremaining > 20`). Operator is Numeric method name, syntax is: `':>'`, `':=='`, `':!='`, etc. This can be any operator or method returning Boolean.
 
 * `:rag:` - three element array of values to compare to [Red, Amber,
     Green], order is important.
