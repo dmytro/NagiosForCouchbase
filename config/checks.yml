@@ -58,3 +58,11 @@ checks:
   :ep_tap_replica_queue_itemondisk:
     <<: *default
     :rag: [50,10,-1]
+
+# TODO
+# vb_active_resident_items_ratio - Percentage of active items cached in RAM in this bucket 
+# vb_active_num - Number of vBuckets in the "active" state for this bucket (measured from vb_active_num) === 1024
+# ep_tmp_oom_errors : Number of back-offs sent per second to drivers due to "out of memory" situations from this bucket (measured from ep_tmp_oom_errors) === 0
+
+# Diff: High water mark for auto-evictions (measured from ep_mem_high_wat)
+#       Memory used as measured from mem_used
