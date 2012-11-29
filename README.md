@@ -1,50 +1,31 @@
 
-Couchbase Nagios Monitoring
+Nagios For Couchbase (NFC) Monitoring
 ===========================
 
-Note for the documentation: These documents are more readable in parsed YARD form (links and images are working). Formatted YARD documentatioin can be found at: http://dmytro.github.com/NagiosForCouchbase
+**Note for the documentation**: These documents are more readable in parsed YARD form (links and images are working). Formatted YARD documentatioin can be found at: http://dmytro.github.com/NagiosForCouchbase
 
 
-Purspose
+Description
 ===========
 
-This is a monitoring framework for monitoring Couchbase with Nagios. It relies on native RESTful API of Couchbase and RESTful API for Nagios - Nagira.
+Nagios For Couchbase Monitoring (NFC for short here) is a framework for monitoring Couchbase with Nagios. It relies on native RESTful API of Couchbase and RESTful API for Nagios - Nagira.
 
-System architecture
-----------------------
-![Monitoring Work Flow](images/architecture.png)
+System Overview
+---------------
 
-
-Work-flow diagram
-----------------------
-
-![Monitoring Work Flow](images/workflow.png)
+See {file:OVERVIEW}
 
 Configuration
 --------------
 
 See {file:CONFIGURATION}
 
-Directory layout
-======================
+License
+-----------
 
-````
-├── config
-│   ├── checks.yml
-│   ├── environment.rb
-│   └── environment.yml
-└── lib
-    ├── couchbase.rb
-    ├── extensions.rb
-    └── wizcorp
-        ├── couchbase
-        │   ├── bucket_stats.rb
-        │   ├── buckets.rb
-        │   ├── connection.rb
-        │   └── counters.rb
-        └── nagios
-            ├── api.rb
-            ├── checks.rb
-            └── runner.rb
-````
+MIT, see {file:LICENSE}
 
+Author
+--------
+
+Dmytro Kovalov, 2012

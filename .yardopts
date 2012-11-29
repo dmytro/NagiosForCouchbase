@@ -1,7 +1,7 @@
 lib/**/*.rb
 config/*.rb
--m markdown
 --asset documentation/images:images
 -
 LICENSE.md
 documentation/CONFIGURATION.md
+documentation/OVERVIEW.md
