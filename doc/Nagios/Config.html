@@ -110,40 +110,38 @@
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If you have more than one /etc/nagios* directories then only</p>
+    <div class='inline'>
+<p>If you have more than one /etc/nagios* directories then only</p>
 </div>
   </div>
 
-<p>Parser of the main Nagios configuration file -- nagios.cfg. </p>
 
-<p>Constructor parses Nagios&#39; main config file and returns an object:
-each configuration option&#39;s value assigned to an instance variable and
-attribute reader method is created.</p>
+<p>Parser of the main Nagios configuration file -- nagios.cfg.</p>
+
+<p>Constructor parses Nagios' main config file and returns an object: each
+configuration option's value assigned to an instance variable and attribute
+reader method is created.</p>
 
 <p>Can be used as:</p>
 
-<pre class="code ruby"><code>  <span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>nagios/config</span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_nagios'>nagios</span> <span class='op'>=</span> <span class='const'>Nagios</span><span class='op'>::</span><span class='const'>Config</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lib/ruby-nagios/test/data/nagios.cfg</span><span class='tstring_end'>&quot;</span></span>
+<pre class="code ruby"><code>    require 'nagios/config'
+    nagios = Nagios::Config.new &quot;lib/ruby-nagios/test/data/nagios.cfg&quot;
 
-  <span class='id identifier rubyid_nagios'>nagios</span><span class='period'>.</span><span class='id identifier rubyid_log_file'>log_file</span>
-</code></pre>
+    nagios.log_file
+=&gt; &quot;/var/log/nagios3/nagios.log&quot;
 
-<p>=&gt; &quot;/var/log/nagios3/nagios.log&quot;</p>
+    nagios.status_file
+=&gt; &quot;/var/cache/nagios3/status.dat&quot;</code></pre>
 
-<pre class="code ruby"><code>  <span class='id identifier rubyid_nagios'>nagios</span><span class='period'>.</span><span class='id identifier rubyid_status_file'>status_file</span>
-</code></pre>
+<h1>Configuration of the module</h1>
 
-<p>=&gt; &quot;/var/cache/nagios3/status.dat&quot;</p>
+<p>Default search directory and file pattern (Dir.glob) is defined by <a
+href="http://:nagios_cfg_glob">Nagios::DEFAULT</a> constant. It is set in
+<tt>config/default.rb</tt> file.</p>
 
-<p>= Configuration of the module</p>
-
-<p>Default search directory and file pattern (Dir.glob) is defined by
-Nagios::DEFAULT[:nagios_cfg_glob] constant. It is set in
-+config/default.rb+ file. </p>
-
-<p>first one will be used. For example, Debian can have both Nagios 2 and
-3 installed. In the latter case configuration file is
-+/etc/nagios3/nagios.cfg+.</p>
+<p>first one will be used. For example, Debian can have both Nagios 2 and 3
+installed. In the latter case configuration file is
+<tt>/etc/nagios3/nagios.cfg</tt>.</p>
 
 
   </div>
@@ -189,7 +187,8 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant. It is set in
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Special case for cfg_file and cfg_dir: they are Arrays.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Special case for cfg_file and cfg_dir: they are Arrays.</p>
 </div></span>
   
 </li>
@@ -217,7 +216,8 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant. It is set in
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Special case for cfg_file and cfg_dir: they are Arrays.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Special case for cfg_file and cfg_dir: they are Arrays.</p>
 </div></span>
   
 </li>
@@ -243,7 +243,8 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant. It is set in
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Hash holding all the configuration after parsing.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Hash holding all the configuration after parsing.</p>
 </div></span>
   
 </li>
@@ -269,7 +270,8 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant. It is set in
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Path to main configuration file nagios.cfg.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Path to main configuration file nagios.cfg.</p>
 </div></span>
   
 </li>
@@ -312,7 +314,8 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant. It is set in
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Initialize configuration file path.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Initialize configuration file path.</p>
 </div></span>
   
 </li>
@@ -335,7 +338,8 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant. It is set in
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Read and parse main Nagios  configuration file +nagios.cfg+.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Read and parse main Nagios  configuration file <tt>nagios.cfg</tt>.</p>
 </div></span>
   
 </li>
@@ -369,8 +373,9 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant. It is set in
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Initialize configuration file path. Check existence and
-readability of the file, raise exception if not.</p>
+    
+<p>Initialize configuration file path. Check existence and readability of the
+file, raise exception if not.</p>
 
 
   </div>
@@ -391,10 +396,10 @@ readability of the file, raise exception if not.</p>
       
       
         &mdash;
-        <div class='inline'><p>PATH to the configuration file. If
-PATH is not provided method will look for configuration file
-+nagios.cfg+ in directory, defined by
-Nagios::DEFAULT[:nagios_cfg_glob] constant ( ususally
+        <div class='inline'>
+<p>PATH to the configuration file. If PATH is not provided method will look
+for configuration file <tt>nagios.cfg</tt> in directory, defined by <a
+href="http://:nagios_cfg_glob">Nagios::DEFAULT</a> constant ( ususally
 /etc/nagios*/nagios.cfg);</p>
 </div>
       
@@ -458,7 +463,8 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant ( ususally
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Special case for cfg_file and cfg_dir: they are Arrays</p>
+    
+<p>Special case for cfg_file and cfg_dir: they are Arrays</p>
 
 
   </div>
@@ -500,7 +506,8 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant ( ususally
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Special case for cfg_file and cfg_dir: they are Arrays</p>
+    
+<p>Special case for cfg_file and cfg_dir: they are Arrays</p>
 
 
   </div>
@@ -542,9 +549,10 @@ Nagios::DEFAULT[:nagios_cfg_glob] constant ( ususally
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Hash holding all the configuration after parsing. Additionally
-for every key in the configuration Hash method is created with
-the same name, which returns the value.</p>
+    
+<p>Hash holding all the configuration after parsing. Additionally for every
+key in the configuration Hash method is created with the same name, which
+returns the value.</p>
 
 
   </div>
@@ -586,7 +594,8 @@ the same name, which returns the value.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Path to main configuration file nagios.cfg</p>
+    
+<p>Path to main configuration file nagios.cfg</p>
 
 
   </div>
@@ -633,7 +642,8 @@ the same name, which returns the value.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Read and parse main Nagios  configuration file +nagios.cfg+</p>
+    
+<p>Read and parse main Nagios  configuration file <tt>nagios.cfg</tt></p>
 
 
   </div>
@@ -649,7 +659,8 @@ the same name, which returns the value.</p>
       
       
         
-        <div class='inline'><p>Dmytro Kovalov, <a href="mailto:dmytro.kovalov@gmail.com">dmytro.kovalov@gmail.com</a></p>
+        <div class='inline'>
+<p>Dmytro Kovalov, dmytro.kovalov@gmail.com</p>
 </div>
       
     </li>
@@ -726,7 +737,7 @@ the same name, which returns the value.</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 27 18:26:32 2012 by
+  Generated on Thu Nov 29 18:24:27 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

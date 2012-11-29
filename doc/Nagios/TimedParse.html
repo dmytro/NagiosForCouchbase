@@ -90,8 +90,9 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Keep track of last parsed time and last changed time of the
-status/cache file to avoid parsing on each HTTP request.</p>
+    
+<p>Keep track of last parsed time and last changed time of the status/cache
+file to avoid parsing on each HTTP request.</p>
 
 
   </div>
@@ -107,9 +108,10 @@ status/cache file to avoid parsing on each HTTP request.</p>
         <dt id="MIN_PARSE_INTERVAL-constant" class="">MIN_PARSE_INTERVAL =
           <div class="docstring">
   <div class="discussion">
-    <p>Set some minimum interval for re-parsing of the status file:
-even if file changes often, we do not want to parse it more
-often, then this number of seconds.</p>
+    
+<p>Set some minimum interval for re-parsing of the status file: even if file
+changes often, we do not want to parse it more often, then this number of
+seconds.</p>
 
 
   </div>
@@ -150,7 +152,8 @@ often, then this number of seconds.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute last_parsed.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute last_parsed.</p>
 </div></span>
   
 </li>
@@ -176,7 +179,8 @@ often, then this number of seconds.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute parse_interval.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute parse_interval.</p>
 </div></span>
   
 </li>
@@ -212,9 +216,10 @@ often, then this number of seconds.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Override constructor and parse method from ::Nagios::Objects or
-::Nagios::Status classes, add instance variables to handle
-modification and parseing times of status file.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Override constructor and parse method from ::Nagios::Objects or
+::Nagios::Status classes, add instance variables to handle modification and
+parseing times of status file.</p>
 </div></span>
   
 </li>
@@ -246,7 +251,8 @@ modification and parseing times of status file.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Return true if file is changed since it was parsed last time.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Return true if file is changed since it was parsed last time.</p>
 </div></span>
   
 </li>
@@ -291,9 +297,13 @@ modification and parseing times of status file.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Check if:
-- file changed?
-- was it parsed recently?.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Check if:</p>
+<ul><li>
+<p>file changed?</p>
+</li><li>
+<p>was it parsed recently?.</p>
+</li></ul>
 </div></span>
   
 </li>
@@ -319,7 +329,8 @@ modification and parseing times of status file.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute last_parsed</p>
+    
+<p>Returns the value of attribute last_parsed</p>
 
 
   </div>
@@ -361,7 +372,8 @@ modification and parseing times of status file.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute parse_interval</p>
+    
+<p>Returns the value of attribute parse_interval</p>
 
 
   </div>
@@ -408,14 +420,18 @@ modification and parseing times of status file.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Override constructor and parse method from ::Nagios::Objects or
-::Nagios::Status classes, add instance variables to handle
-modification and parseing times of status file.
-Original methods are aliased:
-- initialize -&gt; constructor
-- parse -&gt; parse!
-See also
-<a href="http://www.ruby-forum.com/topic/969161">http://www.ruby-forum.com/topic/969161</a></p>
+    
+<p>Override constructor and parse method from ::Nagios::Objects or
+::Nagios::Status classes, add instance variables to handle modification and
+parseing times of status file. Original methods are aliased:</p>
+<ul><li>
+<p>initialize -&gt; constructor</p>
+</li><li>
+<p>parse -&gt; parse!</p>
+</li></ul>
+
+<p>See also <a
+href="http://www.ruby-forum.com/topic/969161">www.ruby-forum.com/topic/969161</a></p>
 
 
   </div>
@@ -525,7 +541,8 @@ See also
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Return true if file is changed since it was parsed last time</p>
+    
+<p>Return true if file is changed since it was parsed last time</p>
 
 
   </div>
@@ -608,9 +625,13 @@ See also
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Check if:
-- file changed?
-- was it parsed recently?</p>
+    
+<p>Check if:</p>
+<ul><li>
+<p>file changed?</p>
+</li><li>
+<p>was it parsed recently?</p>
+</li></ul>
 
 
   </div>
@@ -657,7 +678,7 @@ See also
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 27 18:26:32 2012 by
+  Generated on Thu Nov 29 18:24:26 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

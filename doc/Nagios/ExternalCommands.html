@@ -103,23 +103,23 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Class Nagios::ExternalCommands is class implementing sending
-commands to external commands file in Nagios.</p>
+    
+<p>Class Nagios::ExternalCommands is class implementing sending commands to
+external commands file in Nagios.</p>
 
 <p>From nagios.cfg file:</p>
 
-<p>This is the file that Nagios checks for external command requests.
-It is also where the command CGI will write commands that are
-submitted by users, so it must be writable by the user that the
-web server is running as (usually &#39;nobody&#39;).</p>
+<p>This is the file that Nagios checks for external command requests. It is
+also where the command CGI will write commands that are submitted by users,
+so it must be writable by the user that the web server is running as
+(usually 'nobody').</p>
 
-<p>== Usage</p>
+<h2>Usage</h2>
 
 <pre class="code ruby"><code><span class='id identifier rubyid_command'>command</span> <span class='op'>=</span> <span class='const'>Nagios</span><span class='op'>::</span><span class='const'>ExternalCommands</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='const'>Nagios</span><span class='op'>::</span><span class='const'>Config</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='period'>.</span><span class='id identifier rubyid_command_file'>command_file</span>
 
 <span class='id identifier rubyid_command'>command</span><span class='period'>.</span><span class='id identifier rubyid_write'>write</span> <span class='symbol'>:action</span> <span class='op'>=&gt;</span> <span class='symbol'>:PROCESS_HOST_CHECK_RESULT</span><span class='comma'>,</span> 
-  <span class='symbol'>:host_name</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>myhost</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:status_code</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:plugin_output</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PING command OK</span><span class='tstring_end'>&quot;</span></span>
-</code></pre>
+  <span class='symbol'>:host_name</span>  <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>myhost</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='symbol'>:status_code</span> <span class='op'>=&gt;</span> <span class='int'>0</span><span class='comma'>,</span> <span class='symbol'>:plugin_output</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>PING command OK</span><span class='tstring_end'>&quot;</span></span></code></pre>
 
 
   </div>
@@ -135,28 +135,27 @@ web server is running as (usually &#39;nobody&#39;).</p>
         <dt id="ACTIONS-constant" class="">ACTIONS =
           <div class="docstring">
   <div class="discussion">
-    <p>External commands list in nagios and format to send this to
-Nagios. Keys of the Hash are names of commands, values are
-Array&#39;s of Nagios variables to be sent. Arrays are converted to
-ERB templates before printing, command name and all variables
-joined together by semicolons.</p>
+    
+<p>External commands list in nagios and format to send this to Nagios. Keys of
+the Hash are names of commands, values are Array's of Nagios variables to
+be sent. Arrays are converted to ERB templates before printing, command
+name and all variables joined together by semicolons.</p>
 
-<p>Each variable must be defined as attr_accessor, these variables
-are used in ERB binding.</p>
+<p>Each variable must be defined as attr_accessor, these variables are used in
+ERB binding.</p>
 
-<p>List of all available nagios external commands, formats and
-descriptions can be obtained from
-<a href="http://www.nagios.org/developerinfo/externalcommands">http://www.nagios.org/developerinfo/externalcommands</a> As of the
-time of writing this list is 157 commands for Nagios 3.x.</p>
+<p>List of all available nagios external commands, formats and descriptions
+can be obtained from <a
+href="http://www.nagios.org/developerinfo/externalcommands">www.nagios.org/developerinfo/externalcommands</a>
+As of the time of writing this list is 157 commands for Nagios 3.x.</p>
 
-<p>== Example</p>
+<h2>Example</h2>
 
 <pre class="code ruby"><code>PROCESS_SERVICE_CHECK_RESULT: %w{host_name service_description return_code plugin_output} 
 
 converted to template on print:
 
-[timestamp] PROCESS_SERVICE_CHECK_RESULT;&lt;%= host_name %&gt;;&lt;%= service_description %&gt;;&lt;%= return_code %&gt;;&lt;%= plugin_output %&gt;\n
-</code></pre>
+[timestamp] PROCESS_SERVICE_CHECK_RESULT;&lt;%= host_name %&gt;;&lt;%= service_description %&gt;;&lt;%= return_code %&gt;;&lt;%= plugin_output %&gt;\n</code></pre>
 
 
   </div>
@@ -355,7 +354,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Action to write: one of the keys listed in
+    <span class="summary_desc"><div class='inline'>
+<p>Action to write: one of the keys listed in
 ::Nagios::ExternalCommands::ACTIONS hash.</p>
 </div></span>
   
@@ -382,7 +382,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -408,7 +409,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -434,7 +436,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -460,7 +463,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -486,7 +490,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -512,7 +517,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -538,7 +544,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -564,7 +571,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -590,7 +598,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -616,7 +625,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -642,7 +652,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -668,7 +679,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -694,7 +706,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -720,7 +733,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -746,7 +760,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -772,7 +787,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -798,7 +814,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -824,7 +841,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -850,7 +868,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -876,7 +895,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -902,7 +922,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -928,7 +949,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -954,7 +976,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -980,7 +1003,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1008,7 +1032,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute path.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute path.</p>
 </div></span>
   
 </li>
@@ -1034,7 +1059,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1060,7 +1086,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1086,7 +1113,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1112,7 +1140,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1138,7 +1167,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1164,7 +1194,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1190,7 +1221,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1216,7 +1248,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1242,7 +1275,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1268,7 +1302,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1294,7 +1329,8 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1320,8 +1356,9 @@ converted to template on print:
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Time-stamp - usually time when write is performed, but can be
-overridden by params[:ts] in constructor.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Time-stamp - usually time when write is performed, but can be overridden by
+<a href="http://:ts">params</a> in constructor.</p>
 </div></span>
   
 </li>
@@ -1347,7 +1384,8 @@ overridden by params[:ts] in constructor.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1373,7 +1411,8 @@ overridden by params[:ts] in constructor.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1399,7 +1438,8 @@ overridden by params[:ts] in constructor.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Nagios variable used in external command.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Nagios variable used in external command.</p>
 </div></span>
   
 </li>
@@ -1435,7 +1475,8 @@ overridden by params[:ts] in constructor.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Get private binding to use with ERB bindings.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Get private binding to use with ERB bindings.</p>
 </div></span>
   
 </li>
@@ -1460,7 +1501,8 @@ overridden by params[:ts] in constructor.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Constructor for the external command write class.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Constructor for the external command write class.</p>
 </div></span>
   
 </li>
@@ -1483,7 +1525,8 @@ overridden by params[:ts] in constructor.</p>
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Send command to Nagios.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Send command to Nagios.</p>
 </div></span>
   
 </li>
@@ -1506,12 +1549,12 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Constructor for the external command write class.</p>
+    
+<p>Constructor for the external command write class.</p>
 
-<p>== Example</p>
+<h2>Example</h2>
 
-<pre class="code ruby"><code>&gt;&gt; cmd = Nagios::ExternalCommands.new('/var/nagios/rw/nagios.cmd')
-</code></pre>
+<pre class="code ruby"><code>&gt;&gt; cmd = Nagios::ExternalCommands.new('/var/nagios/rw/nagios.cmd')</code></pre>
 
 
   </div>
@@ -1530,7 +1573,8 @@ overridden by params[:ts] in constructor.</p>
       
       
         &mdash;
-        <div class='inline'><p>Full UNIX path to external command file</p>
+        <div class='inline'>
+<p>Full UNIX path to external command file</p>
 </div>
       
     </li>
@@ -1596,7 +1640,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Action to write: one of the keys listed in
+    
+<p>Action to write: one of the keys listed in
 ::Nagios::ExternalCommands::ACTIONS hash.</p>
 
 
@@ -1639,7 +1684,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -1681,7 +1727,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -1723,7 +1770,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -1765,7 +1813,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -1807,7 +1856,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -1849,7 +1899,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -1891,7 +1942,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -1933,7 +1985,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -1975,7 +2028,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2017,7 +2071,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2059,7 +2114,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2101,7 +2157,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2143,7 +2200,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2185,7 +2243,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2227,7 +2286,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2269,7 +2329,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2311,7 +2372,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2353,7 +2415,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2395,7 +2458,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2437,7 +2501,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2479,7 +2544,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2521,7 +2587,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2563,7 +2630,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2605,7 +2673,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2647,7 +2716,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute path</p>
+    
+<p>Returns the value of attribute path</p>
 
 
   </div>
@@ -2689,7 +2759,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2731,7 +2802,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2773,7 +2845,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2815,7 +2888,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2857,7 +2931,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2899,7 +2974,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2941,7 +3017,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -2983,7 +3060,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -3025,7 +3103,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -3067,7 +3146,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -3109,7 +3189,8 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -3151,10 +3232,11 @@ overridden by params[:ts] in constructor.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Time-stamp - usually time when write is performed, but can be
-overridden by params[:ts] in constructor. If given as argument
-for constructor it should be String of the format:
-Time.to_i.to_s (i.e number of seconds since epoch).</p>
+    
+<p>Time-stamp - usually time when write is performed, but can be overridden by
+<a href="http://:ts">params</a> in constructor. If given as argument for
+constructor it should be String of the format: Time.to_i.to_s (i.e number
+of seconds since epoch).</p>
 
 
   </div>
@@ -3196,7 +3278,8 @@ Time.to_i.to_s (i.e number of seconds since epoch).</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -3238,7 +3321,8 @@ Time.to_i.to_s (i.e number of seconds since epoch).</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -3280,7 +3364,8 @@ Time.to_i.to_s (i.e number of seconds since epoch).</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Nagios variable used in external command</p>
+    
+<p>Nagios variable used in external command</p>
 
 
   </div>
@@ -3327,7 +3412,8 @@ Time.to_i.to_s (i.e number of seconds since epoch).</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Get private binding to use with ERB bindings.</p>
+    
+<p>Get private binding to use with ERB bindings.</p>
 
 
   </div>
@@ -3367,7 +3453,9 @@ Time.to_i.to_s (i.e number of seconds since epoch).</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Send command to Nagios. Prints formatted string to external command file (pipe).</p>
+    
+<p>Send command to Nagios. Prints formatted string to external command file
+(pipe).</p>
 
 
   </div>
@@ -3386,8 +3474,9 @@ Time.to_i.to_s (i.e number of seconds since epoch).</p>
       
       
         &mdash;
-        <div class='inline'><p>Data to write to command file pipe. Must
-include :action and all additional variables</p>
+        <div class='inline'>
+<p>Data to write to command file pipe. Must include :action and all additional
+variables</p>
 </div>
       
     </li>
@@ -3537,7 +3626,7 @@ include :action and all additional variables</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 27 18:26:33 2012 by
+  Generated on Thu Nov 29 18:24:27 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

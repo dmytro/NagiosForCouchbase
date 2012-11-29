@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>
+  File: System Design and Architecture
+  
+    &mdash; Documentation by YARD 0.8.3
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '';
+  framesUrl = "frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: System Design and Architecture</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><div id='filecontents'><h2>System architecture</h2>
+
+<p>Diagram shows overview of the Nagios for Couchbase (NFC) design.</p>
+
+<p><img src="images/architecture.png" alt="Monitoring Work Flow"></p>
+
+<ul>
+<li>NFC retrives data from Couchbase RESTful API</li>
+<li>Data processed internally by NFS</li>
+<li>RAG status information is submitted to Nagira RESTful API</li>
+<li>Nagira uses External Command interface to submit data to Nagios</li>
+</ul>
+
+<h2>Work-flow </h2>
+
+<p><img src="images/workflow.png" alt="Monitoring Work Flow"></p>
+
+<ul>
+<li>Configuration files <code>environment.yml</code> and <code>checks.yml</code> define application environment</li>
+<li>Nagira API is used to obtain list of Couchbase hosts - using Nagios hostgroup 
+
+<ul>
+<li>hostgroup is parameter configured in <code>environment.yml</code> file</li>
+<li>hosts can be added to exclusion list in the same file</li>
+</ul></li>
+<li>Couchbase checks for Nagios configured in <code>checks.yml</code> file</li>
+<li>Each Couchbase host and each bucket queried for its status</li>
+<li>Results of the checks passed to Nagira API</li>
+</ul>
+
+<p>For more details about configuration see <a href="file.CONFIGURATION.html" title="CONFIGURATION">CONFIGURATION</a></p>
+
+<h1>Directory layout</h1>
+
+<p>Directory layout more or less reflects classes hierarchy. </p>
+
+<p>Submodules used:</p>
+
+<ul>
+<li><code>lib/nagira</code> - Nagira API can be found on <a href="https://github.com/dmytro/nagira">https://github.com/dmytro/nagira</a></li>
+<li><code>nagios-ruby</code> - is fork of R.I.Pienaar project at <a href="https://github.com/ripienaar/ruby-nagios">https://github.com/ripienaar/ruby-nagios</a>, with some additions.</li>
+</ul>
+
+<pre class="code ruby"><code><span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_bin'>bin</span>
+<span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_config'>config</span>
+<span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_erb'>erb</span>
+<span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_documentation'>documentation</span>
+<span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_images'>images</span>
+<span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_lib'>lib</span>
+    <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_nagira'>nagira</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_app'>app</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_routes'>routes</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_│'>│</span>       <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_get'>get</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_│'>│</span>       <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_put'>put</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_config'>config</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_docs'>docs</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_lib'>lib</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_nagira'>nagira</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_ruby'>ruby</span><span class='op'>-</span><span class='id identifier rubyid_nagios'>nagios</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_│'>│</span>       <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_config'>config</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_│'>│</span>       <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_nagios'>nagios</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_│'>│</span>           <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_external_commands'>external_commands</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_spec'>spec</span>
+    <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_test'>test</span>
+    <span class='id identifier rubyid_│'>│</span>       <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_data'>data</span>
+    <span class='id identifier rubyid_│'>│</span>           <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_bad'>bad</span>
+    <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_wizcorp'>wizcorp</span>
+        <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_couchbase'>couchbase</span>
+        <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_nagios'>nagios</span>
+            <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_api'>api</span>
+</code></pre>
+</div></div>
+
+    <div id="footer">
+  Generated on Thu Nov 29 18:24:26 2012 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.3 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>

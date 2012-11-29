@@ -107,7 +107,8 @@
         <dt id="connections-classvariable" class="">@@connections =
           <div class="docstring">
   <div class="discussion">
-    <p>Reuse Couchbase API connections</p>
+    
+<p>Reuse Couchbase API connections</p>
 
 
   </div>
@@ -148,7 +149,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute connection.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute connection.</p>
 </div></span>
   
 </li>
@@ -174,7 +176,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute hostname.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute hostname.</p>
 </div></span>
   
 </li>
@@ -200,7 +203,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute key.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute key.</p>
 </div></span>
   
 </li>
@@ -269,7 +273,8 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Creates an instance of an object.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Creates an instance of an object.</p>
 </div></span>
   
 </li>
@@ -292,8 +297,9 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Check values obtained for the key from HTTP with configured
-RAG status values.</p>
+    <span class="summary_desc"><div class='inline'>
+<p>Check values obtained for the key from HTTP with configured RAG status
+values.</p>
 </div></span>
   
 </li>
@@ -316,10 +322,10 @@ RAG status values.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Creates an instance of an object. Object&#39;s atttibute
-!@connection is an instance of Wizcorp::Couchbase::* object,
-that connects to Couchbase RESTful API and retrieves status
-information.</p>
+    
+<p>Creates an instance of an object. Object's atttibute !@connection is an
+instance of Wizcorp::Couchbase::* object, that connects to Couchbase
+RESTful API and retrieves status information.</p>
 
 
   </div>
@@ -338,8 +344,8 @@ information.</p>
       
       
         &mdash;
-        <div class='inline'><p>Couchbase variable. See
-config/checks.yml file for details.</p>
+        <div class='inline'>
+<p>Couchbase variable. See config/checks.yml file for details.</p>
 </div>
       
     </li>
@@ -356,10 +362,10 @@ config/checks.yml file for details.</p>
       
       
         &mdash;
-        <div class='inline'><p>Connection Hash for Couchbase
-connection. See Couchbase::Connection#new
-Options below are required, all other Hash attributes
-depend on the actual class constructor.</p>
+        <div class='inline'>
+<p>Connection Hash for Couchbase connection. See
+Couchbase::Connection#new Options below are required, all other
+Hash attributes depend on the actual class constructor.</p>
 </div>
       
     </li>
@@ -381,8 +387,8 @@ depend on the actual class constructor.</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>Couchbase server for service
-checks</p>
+            &mdash; <div class='inline'>
+<p>Couchbase server for service checks</p>
 </div>
           
         </li>
@@ -394,9 +400,9 @@ checks</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>Set to +false+ if you
-don&#39;t want to reuse connections for this service check. By
-default connections cached, and for several keys, data
+            &mdash; <div class='inline'>
+<p>Set to <tt>false</tt> if you don't want to reuse connections for this
+service check. By default connections cached, and for several keys, data
 from single HTTP request are reused.</p>
 </div>
           
@@ -469,7 +475,8 @@ from single HTTP request are reused.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute connection</p>
+    
+<p>Returns the value of attribute connection</p>
 
 
   </div>
@@ -511,7 +518,8 @@ from single HTTP request are reused.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute hostname</p>
+    
+<p>Returns the value of attribute hostname</p>
 
 
   </div>
@@ -553,7 +561,8 @@ from single HTTP request are reused.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute key</p>
+    
+<p>Returns the value of attribute key</p>
 
 
   </div>
@@ -636,22 +645,24 @@ from single HTTP request are reused.</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Check values obtained for the key from HTTP with configured
-RAG status values. </p>
+    
+<p>Check values obtained for the key from HTTP with configured RAG status
+values.</p>
 
-<p>== Flow (see source)</p>
-
-<ul>
-<li><p>(1) Get whole hash from HTTP</p></li>
-<li><p>(2) Apply method to this hash. Method should exist, it is
-provided by method_missing, calculate sum of all values
-(TODO: add sum or avg parameter)
-Calculate function for the array.</p></li>
-<li><p>(3) Start from Green and propagate to Red. Red is the most
-significant and checked at the end, overwriting previous.</p></li>
-<li><p>(4) Compare obtained value with RAG configuration values using
-comparison operator in the configuration hash.</p></li>
-</ul>
+<h2>Flow (see source)</h2>
+<ul><li>
+<p>(1) Get whole hash from HTTP</p>
+</li><li>
+<p>(2) Apply method to this hash. Method should exist, it is provided by
+method_missing, calculate sum of all values (TODO: add sum or avg
+parameter) Calculate function for the array.</p>
+</li><li>
+<p>(3) Start from Green and propagate to Red. Red is the most significant and
+checked at the end, overwriting previous.</p>
+</li><li>
+<p>(4) Compare obtained value with RAG configuration values using comparison
+operator in the configuration hash.</p>
+</li></ul>
 
 
   </div>
@@ -721,7 +732,7 @@ comparison operator in the configuration hash.</p></li>
 </div>
 
     <div id="footer">
-  Generated on Tue Nov 27 18:26:32 2012 by
+  Generated on Thu Nov 29 18:24:27 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

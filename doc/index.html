@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
 <title>
   File: README
   
@@ -61,50 +61,33 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1>Couchbase Nagios Monitoring</h1>
+    <div id="content"><div id='filecontents'><h1>Nagios For Couchbase (NFC) Monitoring</h1>
 
-<p>Note for the documentation: These documents are more readable in parsed YARD form (links and images are working). Formatted YARD documentatioin can be found at: <a href="http://dmytro.github.com/NagiosForCouchbase">http://dmytro.github.com/NagiosForCouchbase</a></p>
+<p><strong>Note for the documentation</strong>: These documents are more readable in parsed YARD form (links and images are working). Formatted YARD documentatioin can be found at: <a href="http://dmytro.github.com/NagiosForCouchbase">http://dmytro.github.com/NagiosForCouchbase</a></p>
 
-<h1>Purspose</h1>
+<h1>Description</h1>
 
-<p>This is a monitoring framework for monitoring Couchbase with Nagios. It relies on native RESTful API of Couchbase and RESTful API for Nagios - Nagira.</p>
+<p>Nagios For Couchbase Monitoring (NFC for short here) is a framework for monitoring Couchbase with Nagios. It relies on native RESTful API of Couchbase and RESTful API for Nagios - Nagira.</p>
 
-<h2>System architecture</h2>
+<h2>System Overview</h2>
 
-<p><img src="images/architecture.png" alt="Monitoring Work Flow"></p>
-
-<h2>Work-flow diagram</h2>
-
-<p><img src="images/workflow.png" alt="Monitoring Work Flow"></p>
+<p>See <a href="file.OVERVIEW.html" title="OVERVIEW">OVERVIEW</a></p>
 
 <h2>Configuration</h2>
 
 <p>See <a href="file.CONFIGURATION.html" title="CONFIGURATION">CONFIGURATION</a></p>
 
-<h1>Directory layout</h1>
+<h2>License</h2>
 
-<pre class="code ruby"><code><span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_config'>config</span>
-<span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_checks'>checks</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span>
-<span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-<span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_environment'>environment</span><span class='period'>.</span><span class='id identifier rubyid_yml'>yml</span>
-<span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_lib'>lib</span>
-    <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_couchbase'>couchbase</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-    <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_extensions'>extensions</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-    <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_wizcorp'>wizcorp</span>
-        <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_couchbase'>couchbase</span>
-        <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_bucket_stats'>bucket_stats</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-        <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_buckets'>buckets</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-        <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-        <span class='id identifier rubyid_│'>│</span>   <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_counters'>counters</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-        <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_nagios'>nagios</span>
-            <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_api'>api</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-            <span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_checks'>checks</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-            <span class='id identifier rubyid_└──'>└──</span> <span class='id identifier rubyid_runner'>runner</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span>
-</code></pre>
+<p>MIT, see <a href="file.LICENSE.html" title="LICENSE">LICENSE</a></p>
+
+<h2>Author</h2>
+
+<p>Dmytro Kovalov, 2012</p>
 </div></div>
 
     <div id="footer">
-  Generated on Tue Nov 27 18:26:32 2012 by
+  Generated on Thu Nov 29 18:24:26 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
