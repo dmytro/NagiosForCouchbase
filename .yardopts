@@ -2,6 +2,6 @@ lib/**/*.rb
 config/*.rb
 --asset documentation/images:images
 -
-LICENSE.md
-documentation/CONFIGURATION.md
 documentation/OVERVIEW.md
+documentation/CONFIGURATION.md
+LICENSE.md
