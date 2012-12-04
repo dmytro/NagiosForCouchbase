@@ -37,6 +37,7 @@ module Wizcorp
         klass = [@key[:namespace],@key[:class]].join('::').to_class
 
         @hostname = hash[:hostname]
+        @bucket = hash[:bucket]
         
         if hash[:reuse_connection] == false
           @connection = klass.new(hash) 
@@ -47,7 +48,7 @@ module Wizcorp
 
       end
 
-      attr_accessor :connection, :hostname
+      attr_accessor :connection, :hostname, :bucket
       attr_accessor :key
 
       # Check values obtained for the key from HTTP with configured
@@ -87,7 +88,7 @@ module Wizcorp
           :plugin_output => res, 
           :return_code => rag, 
           # TODO - make it cleaner and DRY
-          :service_description => "#{@key[:bucket]}:#{@key[:name]}"
+          :service_description => "#{@bucket}: #{@key[:name]}"
         }
       end
 
