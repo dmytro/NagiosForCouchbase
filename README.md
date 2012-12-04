@@ -2,7 +2,7 @@
 Nagios For Couchbase (NFC) Monitoring
 ===========================
 
-**Note for the documentation**: These documents are more readable in parsed YARD form (links and images are working). Formatted YARD documentatioin can be found at: http://dmytro.github.com/NagiosForCouchbase
+**Note for the documentation**: These documents are more readable in parsed YARD form (links and images are working). Formatted YARD documentatioin can be found at: http://wizcorp.github.com/NagiosForCouchbase
 
 
 Description
