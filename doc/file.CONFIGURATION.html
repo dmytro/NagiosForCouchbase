@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
 <title>
-  File: CONFIGURATION
+  File: Installation and Configuration
   
     &mdash; Documentation by YARD 0.8.3
   
@@ -32,7 +32,7 @@
       <div id="menu">
   
     <a href="_index.html">Index</a> &raquo; 
-    <span class="title">File: CONFIGURATION</span>
+    <span class="title">File: Installation and Configuration</span>
   
 
   <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
@@ -61,7 +61,33 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h1>Configuration files</h1>
+    <div id="content"><div id='filecontents'><h1>Installation</h1>
+
+<ul>
+<li><p>Clone repo</p>
+
+<p>git clone --recursive <a href="https://github.com/NagiosForCouchbase.git">https://github.com/NagiosForCouchbase.git</a></p></li>
+<li><p>Install startup file for Nagira REST API. Execute rake task from the top level of your installation directory.  Please note, first task below (<code>app:configure</code>) combines two following. </p></li>
+</ul>
+
+<p>Nagira&#39;s init.d start file is created from ERB template and takes into account current installation directory, if you decide to change location of application in the future, re-run the task from the new location.</p>
+
+<p>Nagira directory must be accessible to the UNIX user running Nagira appliaction (usually <code>nagios</code>).</p>
+
+<pre class="code ruby"><code>rake app:configure           # Create Nagira configuration files
+rake app:nagira:init_d       # Install /etc/init.d startup file for Nagira
+rake app:nagira:service      # Start Nagira API service
+</code></pre>
+
+<h1>Configuration </h1>
+
+<h2>Nagira configuration</h2>
+
+<p>Please refer to {<a href="http://dmytro.github.com/nagira">http://dmytro.github.com/nagira</a> Nagira documentation } regarding configuration of Nagira API. </p>
+
+<p>Although you&#39;d probably need to change Nagira configuration only if you have non-standard Nagios installation.</p>
+
+<h2>NFC configuration</h2>
 
 <p>All configuration files are in <code>./config</code> directory.</p>
 
@@ -71,25 +97,25 @@
 <li><code>checks.yml</code> - Nagios service checks configuration.</li>
 </ul>
 
-<h2>Nagios checks configuration</h2>
+<h3>Nagios checks configuration</h3>
 
-<h3>Description of the format</h3>
+<h4>Description of the format</h4>
 
 <p>For clarification regarding format of the attributes, refer to defaults section. All configuration should adhere to the same syntax.</p>
 
-<h4>Colons (:)</h4>
+<h5>Colons (:)</h5>
 
 <p>Attributes should have colons at both ends(i.e. <code>:namespace:</code>, <code>:class:</code>) Trailing colon is left/right side separator in YAML syntax. Leading colon specifies that this is a Symbol in Ruby terms.</p>
 
 <p>Values for attributes <code>:function</code>, <code>:operator</code> also must have leading colons. These are Ruby method names, i.e. symbols.</p>
 
-<h4>Override</h4>
+<h5>Override</h5>
 
 <p>Import defaults by including <code>&#39;&lt;&lt;: *default&#39;</code>, see Example below.</p>
 
 <p>Any default attribute can be overwritten. </p>
 
-<h4>Attributes</h4>
+<h5>Attributes</h5>
 
 <ul>
 <li><p>key (for example <code>:ep_tap_replica_queue_backfillremaining:</code>) is a Ruby method name. In a class defined by <code>:namespace:</code>, <code>:class:</code> pair, must exist or should be provided by <code>method_missing</code> method.</p></li>
@@ -100,7 +126,7 @@
 Green], order is important.</p></li>
 </ul>
 
-<h3>Example</h3>
+<h4>Example</h4>
 
 <pre class="code yaml"><code>
 default: &amp;default
@@ -119,7 +145,7 @@ default: &amp;default
 </div></div>
 
     <div id="footer">
-  Generated on Thu Nov 29 18:24:26 2012 by
+  Generated on Tue Dec  4 15:00:29 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

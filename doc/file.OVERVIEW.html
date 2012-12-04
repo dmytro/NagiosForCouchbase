@@ -61,15 +61,25 @@
 
     <iframe id="search_frame"></iframe>
 
-    <div id="content"><div id='filecontents'><h2>System architecture</h2>
+    <div id="content"><div id='filecontents'><p>This document describes operational principles of Nagios for Couchbase (NFC).</p>
 
-<p>Diagram shows overview of the Nagios for Couchbase (NFC) design.</p>
+<h1>Features</h1>
+
+<ul>
+<li>TODO: meta programming</li>
+<li>TODO: configuration</li>
+<li>TODO: generic</li>
+</ul>
+
+<h1>System architecture</h1>
+
+<p>Diagram shows overview of the system design.</p>
 
 <p><img src="images/architecture.png" alt="Monitoring Work Flow"></p>
 
 <ul>
 <li>NFC retrives data from Couchbase RESTful API</li>
-<li>Data processed internally by NFS</li>
+<li>Data processed internally by NFC</li>
 <li>RAG status information is submitted to Nagira RESTful API</li>
 <li>Nagira uses External Command interface to submit data to Nagios</li>
 </ul>
@@ -84,7 +94,7 @@
 
 <ul>
 <li>hostgroup is parameter configured in <code>environment.yml</code> file</li>
-<li>hosts can be added to exclusion list in the same file</li>
+<li>hosts exclusion list configured in the same file</li>
 </ul></li>
 <li>Couchbase checks for Nagios configured in <code>checks.yml</code> file</li>
 <li>Each Couchbase host and each bucket queried for its status</li>
@@ -93,15 +103,16 @@
 
 <p>For more details about configuration see <a href="file.CONFIGURATION.html" title="CONFIGURATION">CONFIGURATION</a></p>
 
-<h1>Directory layout</h1>
+<p>Directory layout
+x======================</p>
 
 <p>Directory layout more or less reflects classes hierarchy. </p>
 
 <p>Submodules used:</p>
 
 <ul>
-<li><code>lib/nagira</code> - Nagira API can be found on <a href="https://github.com/dmytro/nagira">https://github.com/dmytro/nagira</a></li>
-<li><code>nagios-ruby</code> - is fork of R.I.Pienaar project at <a href="https://github.com/ripienaar/ruby-nagios">https://github.com/ripienaar/ruby-nagios</a>, with some additions.</li>
+<li><code>lib/nagira</code> Nagira API can be found on <a href="https://github.com/dmytro/nagira">https://github.com/dmytro/nagira</a></li>
+<li><code>nagios-ruby</code> is fork of R.I.Pienaar project at <a href="https://github.com/ripienaar/ruby-nagios">https://github.com/ripienaar/ruby-nagios</a>, with some additions.</li>
 </ul>
 
 <pre class="code ruby"><code><span class='id identifier rubyid_├──'>├──</span> <span class='id identifier rubyid_bin'>bin</span>
@@ -135,7 +146,7 @@
 </div></div>
 
     <div id="footer">
-  Generated on Thu Nov 29 18:24:26 2012 by
+  Generated on Tue Dec  4 15:00:29 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
