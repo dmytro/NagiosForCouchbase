@@ -22,7 +22,7 @@ zero_10: &zero_10
 # ======================
 
 #
-# Actual checks are grouped under [checks] subtree. 
+# Actual checks are grouped under [checks] subtree.
 #
 checks:
   :ep_tap_replica_queue_backfillremaining:
@@ -34,11 +34,11 @@ checks:
   :vb_active_queue_size:
     <<: *default
     :rag: [100,80,-1]
-    
+
   :vb_replica_queue_size:
     <<: *default
     :rag: [100,80,-1]
-    
+
   :avg_disk_commit_time:
     <<: *default
     :rag: [50,40,0]
@@ -59,10 +59,37 @@ checks:
     <<: *default
     :rag: [50,10,-1]
 
-# TODO
-# vb_active_resident_items_ratio - Percentage of active items cached in RAM in this bucket 
-# vb_active_num - Number of vBuckets in the "active" state for this bucket (measured from vb_active_num) === 1024
-# ep_tmp_oom_errors : Number of back-offs sent per second to drivers due to "out of memory" situations from this bucket (measured from ep_tmp_oom_errors) === 0
+  # vb_active_resident_items_ratio - Percentage of active items cached in RAM in this bucket.
+  #
+  # Working set should fit in memory. If speed access to the data is
+  # the main concern, RED should be set to 100%. Any memory shourt
+  # situation will be reported.
+  :vb_active_resident_items_ratio:
+    <<: *default
+    :function: :<
+    :rag: [100,0,0]
 
+  # vb_active_num - Number of vBuckets in the "active" state for this
+  # bucket (measured from vb_active_num) === 1024
+  #
+  # Under normal conditions always should be 1024
+  :vb_active_num:
+    <<: *default
+    :function: :==
+    :rag: [1024,0,0]
+
+  # ep_tmp_oom_errors : Number of back-offs sent per second to drivers
+  # due to "out of memory" situations from this bucket (measured from
+  # ep_tmp_oom_errors) === 0
+  #
+  # should be zero
+  :ep_tmp_oom_errors:
+    <<: *default
+    :function: :==
+    :rag: [0,0,0]
+
+
+# TODO
+#
 # Diff: High water mark for auto-evictions (measured from ep_mem_high_wat)
 #       Memory used as measured from mem_used
