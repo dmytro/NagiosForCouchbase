@@ -15,7 +15,12 @@ zero_10: &zero_10
   <<: *default
   :rag:  [20, 10, -1]
 
+# Check values that under normal conditions are 0's
 
+zero: &zero
+  <<: *default
+  :operator: :>=
+  :rag: [0.001,0.001,0]
 
 # ======================
 # END of defaults
@@ -66,8 +71,8 @@ checks:
   # situation will be reported.
   :vb_active_resident_items_ratio:
     <<: *default
-    :function: :<
-    :rag: [100,0,0]
+    :operator: :<
+    :rag: [100,100,101]
 
   # vb_active_num - Number of vBuckets in the "active" state for this
   # bucket (measured from vb_active_num) === 1024
@@ -75,8 +80,8 @@ checks:
   # Under normal conditions always should be 1024
   :vb_active_num:
     <<: *default
-    :function: :==
-    :rag: [1024,0,0]
+    :operator: :<
+    :rag: [1024,1024,1025]
 
   # ep_tmp_oom_errors : Number of back-offs sent per second to drivers
   # due to "out of memory" situations from this bucket (measured from
@@ -84,9 +89,7 @@ checks:
   #
   # should be zero
   :ep_tmp_oom_errors:
-    <<: *default
-    :function: :==
-    :rag: [0,0,0]
+    <<: *zero
 
 
 # TODO
