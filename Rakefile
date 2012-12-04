@@ -1,8 +1,16 @@
 
 require 'yaml'
 require 'erb'
+require_relative 'lib/nagira/lib/nagira'
 require_relative 'lib/couchbase'
-load 'lib/nagira/Rakefile'
+
+desc "Setup application"
+task :all => ["nagira:config:all"]
+
+
+namespace :nagira do
+  load 'lib/nagira/Rakefile'
+end
 
 namespace :client do 
   namespace :config do 
