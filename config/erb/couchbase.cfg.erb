@@ -52,10 +52,12 @@ define servicegroup {
   alias                   Check Couchbase services
 }
 
+<% @buckets.each do |bucket| %>
 <% @checks.each do |check| %>
 define service{
   use                 couchbase-check
-  name                <%= check %>
-  service_description <%= check %>
+  name                <%= bucket %>:<%= check %>
+  service_description <%= bucket %>:<%= check %>
 }
+<% end %>
 <% end %>

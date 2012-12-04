@@ -1,7 +1,6 @@
 
 require 'yaml'
 require 'erb'
-require_relative 'lib/nagira/lib/nagira'
 require_relative 'lib/couchbase'
 
 desc "Setup application"
@@ -22,6 +21,8 @@ namespace :client do
                                                 ).hosts(::APP[:nagios][:hostgroups])
 
       @checks = CHECKS.keys
+
+      @buckets = APP[:buckets]
 
       @hostgroups = APP[:nagios][:hostgroups]
       puts ERB.new(File.read(File.join(APP[:config], APP[:nagios][:erb]))).result(binding)

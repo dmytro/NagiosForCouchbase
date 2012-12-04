@@ -8,9 +8,16 @@ APP = {
 }
 
 APP.merge! YAML.load_file("#{APP[:config]}/environment.yml")
- 
+
+APP[:buckets] = if APP[:buckets][:list]
+                  APP[:buckets][:list]
+                else
+                  Wizcorp::Couchbase::Buckets.list  :hostname => APP[:buckets][:source]
+                end
+
 #
 # Configuration for Nagios checks
+#
 CHECKS = YAML.load_file("#{APP[:config]}/checks.yml")['checks']
 
 #

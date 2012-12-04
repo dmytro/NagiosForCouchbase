@@ -86,7 +86,8 @@ module Wizcorp
           :host_name => hostname,
           :plugin_output => res, 
           :return_code => rag, 
-          :service_description => @key[:name]
+          # TODO - make it cleaner and DRY
+          :service_description => "#{@key[:bucket]}:#{@key[:name]}"
         }
       end
 
