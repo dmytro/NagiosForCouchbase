@@ -68,6 +68,23 @@ module Wizcorp
       # * (4) Compare obtained value with RAG configuration values using
       #   comparison operator in the configuration hash. 
       #
+      # === Note
+      #
+      # At least one of the checks must succeed, otherwise method
+      # returns undefined status (-1) in Nagios.
+      #
+      # == Multiple comparizon operators
+      #
+      # Comparison operator +@key[:operator]+ can be either Symbol or
+      # 3 element Array of symbols. When it is an Array then each of
+      # RAG values can have its 'dedicated' check.
+      #
+      # === Example
+      #
+      # Green status will be achieved only when checked value == 0
+      #    @key[:operator] = [:>, :>, :==]
+      #    @key[:rag] = [100, 0, 0]
+      #
       def rag
         rag = -1 # Undefined by default
 
@@ -76,10 +93,14 @@ module Wizcorp
         res = connection.send(@key[:name]).send(@key[:function].to_sym) # 2
         
         thresholds = @key[:rag].reverse # 3
-
+        operators  = case @key[:operator]
+                       Array  then @key[:operator].reverse
+                       Symbol then [@key[:operator]]*3
+                     end
+                       
         thresholds.each_index do |idx| # 4
           val = thresholds[idx]
-          rag = idx if res.send(@key[:operator].to_sym, val)
+          rag = idx if res.send(operators[idx].to_sym, val)
         end
 
         { 
