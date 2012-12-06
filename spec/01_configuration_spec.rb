@@ -1,10 +1,13 @@
 
 root = File.expand_path(File.dirname(File.dirname(__FILE__)))
-$yamls = %w{ environment.yml checks.yml }.map { |x| File.join(root,'config',x)}
+$config_dir = "#{root}/config"
+#
+# Check these files. Do not change order, add new files at the end.
+#
+YAMLS = %w{ environment.yml checks.yml }.map { |x| File.join(root,'config',x)}
 
-$check_keys = %w{ namespace class function operator rag}.map(&:to_sym) 
+CHECK_KEYS = %w{ namespace class function operator rag}.map(&:to_sym) 
 
-$config_dir = File.dirname(File.dirname(__FILE__)) + '/config'
 
 require 'yaml'
 
@@ -12,7 +15,7 @@ describe "Configuration" do
   
   context 'file' do 
     
-    $yamls.each do |file|
+    YAMLS.each do |file|
       context file do 
         it "should exist" do 
           File.exists?(file).should be true
@@ -26,7 +29,7 @@ describe "Configuration" do
   end
 
   context 'syntax' do
-    $yamls.each do |file|
+    YAMLS.each do |file|
       context file do 
       end
     end
@@ -34,13 +37,13 @@ describe "Configuration" do
 
   context 'data' do
     
-    before {  @environment = YAML.load_file $yamls.first }
+    before {  @environment = YAML.load_file YAMLS.first }
     subject {  @environment }
 
     #
     # Environment data
     # =================================
-    context $yamls.first do 
+    context YAMLS.first do 
       
       context :nagios do 
         
@@ -128,9 +131,9 @@ describe "Configuration" do
     #
     # Nagios checks
     # =================================
-    context $yamls[1] do
+    context YAMLS[1] do
 
-      before  {  @config = YAML.load_file $yamls[1] }
+      before  {  @config = YAML.load_file YAMLS[1] }
       subject {  @config }
       
       it "should have checks"do
@@ -145,12 +148,12 @@ describe "Configuration" do
         
         # Collect all values of checks by key
         def by_key key
-          @checks.each_value.map { |x| x[key] }.flatten.uniq
+          @checks.each_value.map { |x| x[key] }.uniq
         end
         
         # Collect all values of checks by method name
         def by_method meth
-          @checks.each_value.map(&meth).flatten.uniq
+          @checks.each_value.map(&meth).uniq
         end
 
         before { 
@@ -158,16 +161,20 @@ describe "Configuration" do
         }
 
         it "name should be a Symbol" do 
-          
           @checks.keys.map(&:class).uniq.should eq [Symbol]
         end
 
         it "should be a Hash" do
           by_method(:class).should eq [Hash]
         end
+
+        it 'Hash keys should be Symbols' do 
+          by_method(:keys).flatten.map(&:class).uniq.should eq [Symbol]
+        end
         
-        it "should have all keys #{$check_keys.inspect}" do 
-          by_method(:keys).should eq $check_keys
+        
+        it "should have all keys #{CHECK_KEYS.inspect}" do 
+          by_method(:keys).flatten.should eq CHECK_KEYS
         end
 
         context "data types" do 
@@ -227,11 +234,11 @@ describe "Configuration" do
 
           context :rag do 
             it 'should be Array' do 
-              pending
+              by_key(:rag).map(&:class).should be_an Array
             end
 
             it 'should have 3 elements' do 
-              pending
+              by_key(:rag).map(&:length).uniq.should == [3]
             end
           end
 
