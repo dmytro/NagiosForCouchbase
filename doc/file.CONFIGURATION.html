@@ -109,6 +109,31 @@ rake app:nagira:service      # Start Nagira API service
 
 <p>Values for attributes <code>:function</code>, <code>:operator</code> also must have leading colons. These are Ruby method names, i.e. symbols.</p>
 
+<h5>Special note about colons in lists</h5>
+
+<p>Operator specs allow for either single operator for all checks (eg. <code>:&gt;</code>) or individual check for each of RAG thresholds: <code>[:&gt;, :==, :&gt;]</code>. Since this is a method name, and is a Symbol, it should be prepended with colon (<code>:</code>). </p>
+
+<p>In YAML syntax former does not constitute any problem, following is OK:</p>
+
+<pre class="code ruby"><code>:operator: :&gt;
+</code></pre>
+
+<p>However, for lists, inline format is not acceptable, so for checks block format with hyphen-space should be used:    </p>
+
+<ul>
+<li><p>This is OK:    </p>
+
+<pre class="code ruby"><code>:operator:
+   - :&gt;
+   - :=
+   - :&gt;
+</code></pre></li>
+<li><p>But this does not work:</p>
+
+<pre class="code ruby"><code>:operator: [ :&lt;, :&gt; , :== ]
+</code></pre></li>
+</ul>
+
 <h5>Override</h5>
 
 <p>Import defaults by including <code>&#39;&lt;&lt;: *default&#39;</code>, see Example below.</p>
@@ -145,7 +170,7 @@ default: &amp;default
 </div></div>
 
     <div id="footer">
-  Generated on Tue Dec  4 15:00:29 2012 by
+  Generated on Thu Dec  6 15:43:59 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>

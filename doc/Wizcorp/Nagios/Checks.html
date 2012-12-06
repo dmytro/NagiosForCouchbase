@@ -132,6 +132,33 @@
       <li class="public ">
   <span class="summary_signature">
     
+      <a href="#bucket-instance_method" title="#bucket (instance method)">- (Object) <strong>bucket</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute bucket.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#connection-instance_method" title="#connection (instance method)">- (Object) <strong>connection</strong> </a>
     
 
@@ -432,7 +459,8 @@ from single HTTP request are reused.</p>
 45
 46
 47
-48</pre>
+48
+49</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 34</span>
@@ -443,6 +471,7 @@ from single HTTP request are reused.</p>
   <span class='id identifier rubyid_klass'>klass</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='ivar'>@key</span><span class='lbracket'>[</span><span class='symbol'>:namespace</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='ivar'>@key</span><span class='lbracket'>[</span><span class='symbol'>:class</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>::</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_class'>to_class</span>
 
   <span class='ivar'>@hostname</span> <span class='op'>=</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:hostname</span><span class='rbracket'>]</span>
+  <span class='ivar'>@bucket</span> <span class='op'>=</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:bucket</span><span class='rbracket'>]</span>
   
   <span class='kw'>if</span> <span class='id identifier rubyid_hash'>hash</span><span class='lbracket'>[</span><span class='symbol'>:reuse_connection</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='kw'>false</span>
     <span class='ivar'>@connection</span> <span class='op'>=</span> <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_hash'>hash</span><span class='rparen'>)</span> 
@@ -463,9 +492,52 @@ from single HTTP request are reused.</p>
     <h2>Instance Attribute Details</h2>
     
       
-      <span id="connection=-instance_method"></span>
+      <span id="bucket=-instance_method"></span>
       <div class="method_details first">
-  <h3 class="signature first" id="connection-instance_method">
+  <h3 class="signature first" id="bucket-instance_method">
+  
+    - (<tt><span class='object_link'><a href="../../Object.html" title="Object (class)">Object</a></span></tt>) <strong>bucket</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute bucket</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+51
+52
+53</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 51</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bucket'>bucket</span>
+  <span class='ivar'>@bucket</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="connection=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="connection-instance_method">
   
     - (<tt><span class='object_link'><a href="../../Object.html" title="Object (class)">Object</a></span></tt>) <strong>connection</strong> 
   
@@ -490,12 +562,12 @@ from single HTTP request are reused.</p>
       <pre class="lines">
 
 
-50
 51
-52</pre>
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_connection'>connection</span>
   <span class='ivar'>@connection</span>
@@ -533,12 +605,12 @@ from single HTTP request are reused.</p>
       <pre class="lines">
 
 
-50
 51
-52</pre>
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 50</span>
+      <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 51</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hostname'>hostname</span>
   <span class='ivar'>@hostname</span>
@@ -576,12 +648,12 @@ from single HTTP request are reused.</p>
       <pre class="lines">
 
 
-51
 52
-53</pre>
+53
+54</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_key'>key</span>
   <span class='ivar'>@key</span>
@@ -676,7 +748,6 @@ operator in the configuration hash.</p>
       <pre class="lines">
 
 
-71
 72
 73
 74
@@ -696,10 +767,12 @@ operator in the configuration hash.</p>
 88
 89
 90
-91</pre>
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 71</span>
+      <pre class="code"><span class="info file"># File 'lib/wizcorp/nagios/checks.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rag'>rag</span>
   <span class='id identifier rubyid_rag'>rag</span> <span class='op'>=</span> <span class='op'>-</span><span class='int'>1</span> <span class='comment'># Undefined by default
@@ -719,7 +792,8 @@ operator in the configuration hash.</p>
     <span class='symbol'>:host_name</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_hostname'>hostname</span><span class='comma'>,</span>
     <span class='symbol'>:plugin_output</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_res'>res</span><span class='comma'>,</span> 
     <span class='symbol'>:return_code</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_rag'>rag</span><span class='comma'>,</span> 
-    <span class='symbol'>:service_description</span> <span class='op'>=&gt;</span> <span class='ivar'>@key</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span>
+    <span class='comment'># TODO - make it cleaner and DRY
+</span>    <span class='symbol'>:service_description</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@bucket</span><span class='rbrace'>}</span><span class='tstring_content'>: </span><span class='embexpr_beg'>#{</span><span class='ivar'>@key</span><span class='lbracket'>[</span><span class='symbol'>:name</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
   <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -732,7 +806,7 @@ operator in the configuration hash.</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Dec  4 15:00:30 2012 by
+  Generated on Thu Dec  6 15:43:59 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.3 (ruby-1.9.3).
 </div>
