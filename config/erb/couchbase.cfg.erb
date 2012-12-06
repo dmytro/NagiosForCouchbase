@@ -56,8 +56,8 @@ define servicegroup {
 <% @checks.each do |check| %>
 define service{
   use                 couchbase-check
-  name                <%= bucket %>:<%= check %>
-  service_description <%= bucket %>:<%= check %>
+  name                <%= bucket %>: <%= check %>
+  service_description <%= bucket %>: <%= check %>
 }
 <% end %>
 <% end %>

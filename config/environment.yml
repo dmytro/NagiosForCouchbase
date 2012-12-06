@@ -20,6 +20,7 @@
   #
   :ignore_hosts:
     - dummy.moria.local
+    - membase2.moria.local
   :erb: erb/couchbase.cfg.erb
 
   :api:
