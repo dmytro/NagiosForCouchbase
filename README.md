@@ -2,6 +2,8 @@
 Nagios For Couchbase (NFC) Monitoring
 ===========================
 
+[![Build Status](https://secure.travis-ci.org/Wizcorp/NagiosForCouchbase.png?branch=master)](https://travis-ci.org/Wizcorp/NagiosForCouchbase)
+
 **Note for the documentation**: These documents are more readable in parsed YARD form (links and images are working). Formatted YARD documentatioin can be found at: http://wizcorp.github.com/NagiosForCouchbase
 
 
