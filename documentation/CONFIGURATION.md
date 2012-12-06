@@ -54,6 +54,28 @@ Attributes should have colons at both ends(i.e. `:namespace:`, `:class:`) Traili
 
 Values for attributes `:function`, `:operator` also must have leading colons. These are Ruby method names, i.e. symbols.
 
+##### Special note about colons in lists
+
+Operator specs allow for either single operator for all checks (eg. `:>`) or individual check for each of RAG thresholds: `[:>, :==, :>]`. Since this is a method name, and is a Symbol, it should be prepended with colon (`:`). 
+
+In YAML syntax former does not constitute any problem, following is OK:
+
+    :operator: :>
+    
+However, for lists, inline format is not acceptable, so for checks block format with hyphen-space should be used:    
+
+* This is OK:    
+
+        :operator:
+           - :>
+           - :=
+           - :>
+
+* But this does not work:
+
+        :operator: [ :<, :> , :== ]
+    
+
 ##### Override
 
 Import defaults by including `'<<: *default'`, see Example below.
