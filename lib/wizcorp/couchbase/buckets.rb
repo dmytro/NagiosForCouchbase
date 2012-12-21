@@ -8,18 +8,36 @@ module Wizcorp
         @resource = "#{@connection[:pool]}/buckets"
       end
 
+      ##
+      # Return list of all bucket types
+      def self.types params={ }
+        self.by_type(params).keys
+      end
+
+
+      ##
+      # Return list of all buckets as hash, where key is bucket type
+      # 
+      def self.by_type params={ }
+        data, ret = self.new(params).get, { }
+
+        types = data.map{ |x| x['bucketType'] }.uniq.compact
+        types.each do |t|
+          ret[t] = data.map{ |x| x['name'] if x['bucketType'] == t }.compact
+        end
+        ret
+      end
+
       # Return names of all buckets on the server
       #
       # @param [String, Symbol] type Type of the bucket (membase or
       #     memcached), if nil rerurn list of all buckets regardless of
       #     type
       def self.list params={ }, type = nil
-        server = self.new(params)
-        server.get
         if type
-          server.data.map{ |x| x['name'] if x['bucketType'] == type }.compact
+          self.by_type(params)[type]
         else
-          server.data.map { |x| x['name']}
+          self.by_type(params).values.flatten
         end
       end
 
