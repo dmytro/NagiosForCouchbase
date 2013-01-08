@@ -15,6 +15,8 @@ APP[:buckets] = if APP[:buckets][:list]
                   Wizcorp::Couchbase::Buckets.list  :hostname => APP[:buckets][:source]
                 end
 
+# APP[:bucket_types] = Wizcorp::Couchbase::Buckets.types  :hostname => APP[:buckets][:source]
+
 #
 # Configuration for Nagios checks
 #
