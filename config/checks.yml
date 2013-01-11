@@ -88,7 +88,7 @@ checks:
   # bucket (measured from vb_active_num) === 1024
   #
   # Under normal conditions always should be 1024
-  :vb_active_num:
+  :vb_active_num:               # Number of active vBuckets
     <<: *default
     :operator: :<
     :rag: [1024,1024,1025]
@@ -101,6 +101,183 @@ checks:
   :ep_tmp_oom_errors:
     <<: *zero
 
+
+  :vb_active_curr_items:        # Number of in memory items
+    <<: *default
+    :operator: :>
+    :rag: [0,0,-1]
+
+    #   :vb_active_num_non_resident:  # Number of non-resident items
+    #     <<: *default
+    #     :operator: :>
+    #     :rag: [0,0,-1]
+
+  :vb_active_perc_mem_resident: #   % memory resident 
+    <<: *default
+    :operator: :<
+    :rag: [100,100,101]
+
+  :vb_active_eject:          # Number of times item values got ejected
+    <<: *zero
+
+    #   :vb_active_expired:        # Number of times an item was expired
+    #     <<: *default
+    #     :operator: :<
+    #     :rag: [100,100,101]
+
+  :vb_active_ht_memory:      # Memory overhead of the hashtable
+    <<: *default
+    :operator: :<
+    :rag: [100,100,101]
+
+    # Depends on cluster size
+    #
+    #   :vb_active_itm_memory:     # Total item memory
+    #     <<: *default
+    #     :operator: :>
+    #     :rag: [0,0,0]
+    
+    # Depends on cluster size
+    #
+    #   :vb_active_meta_data_memory:  # Total metadata memory
+    #     <<: *default
+    #     :operator: :>
+    #     :rag: [0,0,0]
+    
+  # Need tuning
+  :vb_active_ops_create:        # Number of create operations
+    <<: *default
+    :rag: [20000,10000,0]
+
+  :vb_active_ops_update:        # Number of update operations
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_ops_delete:        # Number of delete operations
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_ops_reject:        # Number of rejected operations
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_queue_size:        # Active items in disk queue
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_queue_memory:      # Memory used for disk queue
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_queue_age:         # Sum of disk queue item age in milliseconds
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_queue_pending:     # Total bytes of pending writes
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_queue_fill:        # Total enqueued items
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_queue_drain:       # Total drained items
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_num_ref_items:     # Number of referenced items
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_active_num_ref_ejects:    # Number of times referenced item values got ejected
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_num:              # Number of pending vBuckets
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_curr_items:       # Number of in memory items
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_num_non_resident:  # Number of non-resident items
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_perc_mem_resident: # % of memory used for resident items
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_eject:         # Number of times item values got ejected
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_expired:       # Number of times an item was expired
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_ht_memory:     # Memory overhead of the hashtable
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_itm_memory:    # Total item in memory
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_meta_data_memory: # Total metadata memory
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_ops_create:       # Number of create operations
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_ops_update:       # Number of update operations
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_ops_delete:       # Number of delete operations
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_ops_reject:       # Number of rejected operations
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_queue_size:       # Pending items in disk queue
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_queue_memory:     # Memory used for disk queue
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_queue_age:  # Sum of disk queue item age in milliseconds
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_queue_pending:    # Total bytes of pending writes
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_queue_fill:       # Total enqueued items
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_queue_drain:      # Total drained items
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_num_ref_items:    # Number of referenced items
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  :vb_pending_num_ref_ejects: # Number of times referenced item values got ejected
+    <<: *default
+    :rag: [20000,10000,0]       # Need tuning
+
+  
 
 # TODO
 #

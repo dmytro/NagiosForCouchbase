@@ -25,7 +25,7 @@ Configuration
 Nagira configuration
 ----------------------
 
-Please refer to {http://dmytro.github.com/nagira Nagira documentation } regarding configuration of Nagira API. 
+Please refer to [Nagira documentation](http://dmytro.github.com/nagira) regarding configuration of Nagira API. 
 
 Although you'd probably need to change Nagira configuration only if you have non-standard Nagios installation.
 
@@ -41,6 +41,19 @@ All configuration files are in `./config` directory.
 
 ### Nagios checks configuration
 
+#### RAG Threshold Check 
+
+
+Checks performed by applying comparison operator to RAG threshold and data returned by Couchbase API. 
+
+1. Before start result is set to undefined value, 
+1. Then checks are applied in reverse order: Green, Amber, Red. 
+1. Result status is updated only if check succeeds. So, Amber overwtrites Green, and Red overwrites Amber.
+
+If no checks are succeded then returned value is `nil` (undefined). 
+
+That means that threshold should be set in such way, that at least one of the checks be successful. For example: if you want to see alert in case `:ep_tmp_oom_errors:` is more than 0, you will need to set operator to `:>=` and `:rag` to [1,1,0]. 
+`
 
 #### Description of the format
 
@@ -84,18 +97,35 @@ Any default attribute can be overwritten.
 
 ##### Attributes
 
-* key (for example `:ep_tap_replica_queue_backfillremaining:`) is a Ruby method name. In a class defined by `:namespace:`, `:class:` pair, must exist or should be provided by `method_missing` method.
+* key (for example `:ep_tap_replica_queue_backfillremaining:`) is a Ruby method name. In a class defined by `:namespace:`, `:class:` pair, should exist in specified class (defined explicitly) or provided by `method_missing` method.
 
 * `:namespace:` and `:class:` - Ruby module hierarchy, together with class define Ruby class that reads Couchbase data from REST.
 
-* `:function:` - name of reduce type function (Array class method) for array pre-processing (for example, :sum or :avg) Function can be any Array method, producing single value. See ./lib/array.rb for the implemented ones.
+* `:function:` - name of reduce type function (Array instance method) for array pre-processing (for example, `:sum` or `:avg`) Function can be any Array method, producing single value. See `./lib/array.rb` for the implemented ones. Function `:none` dos not perform any preprocessing, it simply returns unmodified object. This is can be used when data (for example Boolean) are simply passed to comparison operator(s).
 
-* `:operator:` - comparison operator for evaluating RAG checks (for example `ep_tap_replica_queue_backfillremaining > 20`). Operator is Numeric method name, syntax is: `':>'`, `':=='`, `':!='`, etc. This can be any operator or method returning Boolean.
+* `:rag:` - three element array of values to compare to [Red, Amber, Green], order is important.
 
-* `:rag:` - three element array of values to compare to [Red, Amber,
-    Green], order is important.
+  Example:
+  
+  ```
+    :ep_tap_total_queue_drain:
+    :rag: [100,80,-1]
+   ```
 
-#### Example
+* `:operator:` - comparison operator for evaluating RAG checks (for example `ep_tap_replica_queue_backfillremaining > 20`). Operator is Numeric method name, syntax is: `':>'`, `':=='`, `':!='`, etc. This can be any operator or method returning Boolean. Operator can be also 3-element array of operators if comparisons for different levens of RAG's are requried.
+
+
+* `:only_if:` - by default configuration is applied to all buckets. However there are some metrics that do not exist in both bucket types (memcache and membase). In this case it is possible to override default and apply it only to the specified bucket type. 
+
+  Example: 
+
+```yaml  
+        :ep_tap_replica_queue_itemondisk:
+        :only_if: membase
+```    
+
+
+### Example configuration
 
 ````yaml
 
