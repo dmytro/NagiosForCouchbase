@@ -95,8 +95,8 @@ module Wizcorp
         
         thresholds = @key[:rag].reverse # 3
         operators  = case @key[:operator]
-                       Array  then @key[:operator].reverse
-                       Symbol then [@key[:operator]]*3
+                       when Array  then @key[:operator].reverse
+                       when Symbol then [@key[:operator]]*3
                      end
                        
         thresholds.each_index do |idx| # 4

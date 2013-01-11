@@ -6,7 +6,7 @@ $config_dir = "#{root}/config"
 #
 YAMLS = %w{ environment.yml checks.yml }.map { |x| File.join(root,'config',x)}
 
-CHECK_KEYS = %w{ namespace class function operator rag}.map(&:to_sym) 
+CHECK_KEYS = %w{ only_if namespace class function operator rag}.map(&:to_sym) 
 
 
 require 'yaml'
@@ -131,7 +131,7 @@ describe "Configuration" do
         
         
         it "should have all keys #{CHECK_KEYS.inspect}" do 
-          by_method(:keys).flatten.should eq CHECK_KEYS
+          by_method(:keys).flatten.uniq.sort.should eq CHECK_KEYS.sort
         end
 
         context :namespace do 

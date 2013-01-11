@@ -1,12 +1,12 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
-guard 'brakeman' do
-  watch(%r{^app/.+\.(erb|haml|rhtml|rb)$})
-  watch(%r{^config/.+\.rb$})
-  watch(%r{^lib/.+\.rb$})
-  watch('Gemfile')
-end
+#guard 'brakeman' do
+#  watch(%r{^app/.+\.(erb|haml|rhtml|rb)$})
+#  watch(%r{^config/.+\.rb$})
+#  watch(%r{^lib/.+\.rb$})
+#  watch('Gemfile')
+#end
 
 guard 'rspec', :version => 2 do
   watch(%r{^spec/.+_spec\.rb$})
